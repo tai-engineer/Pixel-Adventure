@@ -1,7 +1,658 @@
 fileFormatVersion: 2
 guid: dd5ffa37d3da4de4bb7212ec4dce31dc
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6367560908665664636
+    second: Idle (32x32)_0
+  - first:
+      213: -6056987297122131021
+    second: Idle (32x32)_1
+  - first:
+      213: 8416797952724722639
+    second: Idle (32x32)_2
+  - first:
+      213: 4883129791460916795
+    second: Idle (32x32)_3
+  - first:
+      213: 4278371960119211202
+    second: Idle (32x32)_4
+  - first:
+      213: 8644832591467991550
+    second: Idle (32x32)_5
+  - first:
+      213: -7152759390613953277
+    second: Idle (32x32)_6
+  - first:
+      213: 6456874251884481089
+    second: Idle (32x32)_7
+  - first:
+      213: -2526832996998184344
+    second: Idle (32x32)_8
+  - first:
+      213: 4392827059107796345
+    second: Idle (32x32)_9
+  - first:
+      213: -1363835404106015672
+    second: Idle (32x32)_10
+  - first:
+      213: 888052540911365118
+    second: Idle (32x32)_11
+  - first:
+      213: -7783937879580154135
+    second: Idle (32x32)_12
+  - first:
+      213: 1126353366029582468
+    second: Idle (32x32)_13
+  - first:
+      213: -77663671084358383
+    second: Idle (32x32)_14
+  - first:
+      213: -5700361602549244931
+    second: Idle (32x32)_15
+  - first:
+      213: -4783886795465728856
+    second: Idle (32x32)_16
+  - first:
+      213: 5850926465413261721
+    second: Idle (32x32)_17
+  - first:
+      213: -4842847701588936435
+    second: Idle (32x32)_18
+  - first:
+      213: -2924239822745709994
+    second: Idle (32x32)_19
+  - first:
+      213: 9104510433574182948
+    second: Idle (32x32)_20
+  - first:
+      213: -7879372417465505671
+    second: Idle (32x32)_21
+  - first:
+      213: 689129796119287013
+    second: Idle (32x32)_22
+  - first:
+      213: 8209723870453297422
+    second: Idle (32x32)_23
+  - first:
+      213: -2866368097346408839
+    second: Idle (32x32)_24
+  - first:
+      213: 507171190532610487
+    second: Idle (32x32)_25
+  - first:
+      213: 8412754707301974647
+    second: Idle (32x32)_26
+  - first:
+      213: -1941252491738131299
+    second: Idle (32x32)_27
+  - first:
+      213: 8660567482397878255
+    second: Idle (32x32)_28
+  - first:
+      213: -1031475060616359227
+    second: Idle (32x32)_29
+  - first:
+      213: -8295539069598385563
+    second: Idle (32x32)_30
+  - first:
+      213: -2144533858464828305
+    second: Idle (32x32)_31
+  - first:
+      213: -7628699978727449018
+    second: Idle (32x32)_32
+  - first:
+      213: -7343970766340677515
+    second: Idle (32x32)_33
+  - first:
+      213: 502638802727055124
+    second: Idle (32x32)_34
+  - first:
+      213: -2595911545905005369
+    second: Idle (32x32)_35
+  - first:
+      213: -4206767393815763660
+    second: Idle (32x32)_36
+  - first:
+      213: 844095264829793859
+    second: Idle (32x32)_37
+  - first:
+      213: -2386225115317341949
+    second: Idle (32x32)_38
+  - first:
+      213: 1947615482726467128
+    second: Idle (32x32)_39
+  - first:
+      213: -8984399422144569423
+    second: Idle (32x32)_40
+  - first:
+      213: 5640658107260591362
+    second: Idle (32x32)_41
+  - first:
+      213: 3984429927474563900
+    second: Idle (32x32)_42
+  - first:
+      213: -5307183866780271618
+    second: Idle (32x32)_43
+  - first:
+      213: -3522183596492037561
+    second: Idle (32x32)_44
+  - first:
+      213: 1838129054147010315
+    second: Idle (32x32)_45
+  - first:
+      213: 643368772777225854
+    second: Idle (32x32)_46
+  - first:
+      213: 3491507065485323703
+    second: Idle (32x32)_47
+  - first:
+      213: -1347836935611228600
+    second: Idle (32x32)_48
+  - first:
+      213: 4697333375815808301
+    second: Idle (32x32)_49
+  - first:
+      213: 8666454355961021920
+    second: Idle (32x32)_50
+  - first:
+      213: 3209083211853645501
+    second: Idle (32x32)_51
+  - first:
+      213: -2927352414082308388
+    second: Idle (32x32)_52
+  - first:
+      213: -5586134864384045233
+    second: Idle (32x32)_53
+  - first:
+      213: 7409469399124732739
+    second: Idle (32x32)_54
+  - first:
+      213: 8752370280083823265
+    second: Idle (32x32)_55
+  - first:
+      213: -5302283097573176256
+    second: Idle (32x32)_56
+  - first:
+      213: -8654681280764143201
+    second: Idle (32x32)_57
+  - first:
+      213: 1234144350566231536
+    second: Idle (32x32)_58
+  - first:
+      213: 8561776466534891430
+    second: Idle (32x32)_59
+  - first:
+      213: -1205944085813435179
+    second: Idle (32x32)_60
+  - first:
+      213: 530742504365122564
+    second: Idle (32x32)_61
+  - first:
+      213: 8929887960400383023
+    second: Idle (32x32)_62
+  - first:
+      213: 2394002040601433105
+    second: Idle (32x32)_63
+  - first:
+      213: -5019123734271337758
+    second: Idle (32x32)_64
+  - first:
+      213: -8159918757564545489
+    second: Idle (32x32)_65
+  - first:
+      213: 1149306170578417719
+    second: Idle (32x32)_66
+  - first:
+      213: -9221396547756660659
+    second: Idle (32x32)_67
+  - first:
+      213: 4395459096320629093
+    second: Idle (32x32)_68
+  - first:
+      213: 3697290830707122257
+    second: Idle (32x32)_69
+  - first:
+      213: -5751457969086744258
+    second: Idle (32x32)_70
+  - first:
+      213: -897732154497133916
+    second: Idle (32x32)_71
+  - first:
+      213: -8569904858317206194
+    second: Idle (32x32)_72
+  - first:
+      213: -1859950030761311806
+    second: Idle (32x32)_73
+  - first:
+      213: 3336384271087629144
+    second: Idle (32x32)_74
+  - first:
+      213: 8831113902902452186
+    second: Idle (32x32)_75
+  - first:
+      213: 7224476852602361154
+    second: Idle (32x32)_76
+  - first:
+      213: -5410123088263951386
+    second: Idle (32x32)_77
+  - first:
+      213: -4213777675143673112
+    second: Idle (32x32)_78
+  - first:
+      213: 6626095937386534095
+    second: Idle (32x32)_79
+  - first:
+      213: -8473109449292242430
+    second: Idle (32x32)_80
+  - first:
+      213: 1591486323963550913
+    second: Idle (32x32)_81
+  - first:
+      213: -9073042503339081474
+    second: Idle (32x32)_82
+  - first:
+      213: -3124800207237989725
+    second: Idle (32x32)_83
+  - first:
+      213: -2451835401670722903
+    second: Idle (32x32)_84
+  - first:
+      213: -5607569097404194672
+    second: Idle (32x32)_85
+  - first:
+      213: -6021856750623014851
+    second: Idle (32x32)_86
+  - first:
+      213: -3252115853346648364
+    second: Idle (32x32)_87
+  - first:
+      213: -4131957196692956305
+    second: Idle (32x32)_88
+  - first:
+      213: -6371364167547189866
+    second: Idle (32x32)_89
+  - first:
+      213: 8286748698155272223
+    second: Idle (32x32)_90
+  - first:
+      213: -6941842743071374588
+    second: Idle (32x32)_91
+  - first:
+      213: 7222413941281880894
+    second: Idle (32x32)_92
+  - first:
+      213: 4109574199454112526
+    second: Idle (32x32)_93
+  - first:
+      213: -2686392945683950806
+    second: Idle (32x32)_94
+  - first:
+      213: -6963774232743819259
+    second: Idle (32x32)_95
+  - first:
+      213: 1490659773706607101
+    second: Idle (32x32)_96
+  - first:
+      213: 7130637117967199217
+    second: Idle (32x32)_97
+  - first:
+      213: -2460923331574705152
+    second: Idle (32x32)_98
+  - first:
+      213: -8638085033312597841
+    second: Idle (32x32)_99
+  - first:
+      213: 1745049711613599649
+    second: Idle (32x32)_100
+  - first:
+      213: 2602576207477672112
+    second: Idle (32x32)_101
+  - first:
+      213: 5464535604548262242
+    second: Idle (32x32)_102
+  - first:
+      213: 2162384013543731092
+    second: Idle (32x32)_103
+  - first:
+      213: -8537159731706793948
+    second: Idle (32x32)_104
+  - first:
+      213: 8777945307095996619
+    second: Idle (32x32)_105
+  - first:
+      213: 3287848451979305446
+    second: Idle (32x32)_106
+  - first:
+      213: 2872107330208478026
+    second: Idle (32x32)_107
+  - first:
+      213: -6919719987378874265
+    second: Idle (32x32)_108
+  - first:
+      213: -4092599979885863028
+    second: Idle (32x32)_109
+  - first:
+      213: -1982546111862608033
+    second: Idle (32x32)_110
+  - first:
+      213: 9204331152144404446
+    second: Idle (32x32)_111
+  - first:
+      213: 6401657773947727175
+    second: Idle (32x32)_112
+  - first:
+      213: -3370098064501071232
+    second: Idle (32x32)_113
+  - first:
+      213: 8637333234245454678
+    second: Idle (32x32)_114
+  - first:
+      213: 1481049041712198435
+    second: Idle (32x32)_115
+  - first:
+      213: 6697217714394752956
+    second: Idle (32x32)_116
+  - first:
+      213: -2621539627664011704
+    second: Idle (32x32)_117
+  - first:
+      213: 4033350891681882924
+    second: Idle (32x32)_118
+  - first:
+      213: 8661713388597071492
+    second: Idle (32x32)_119
+  - first:
+      213: -7504430247766640001
+    second: Idle (32x32)_120
+  - first:
+      213: 2128512480024403946
+    second: Idle (32x32)_121
+  - first:
+      213: 180914685234880894
+    second: Idle (32x32)_122
+  - first:
+      213: 6703545537683589737
+    second: Idle (32x32)_123
+  - first:
+      213: 5343266475771258233
+    second: Idle (32x32)_124
+  - first:
+      213: -7023672361420135624
+    second: Idle (32x32)_125
+  - first:
+      213: -758615860580718413
+    second: Idle (32x32)_126
+  - first:
+      213: 5245892905940461143
+    second: Idle (32x32)_127
+  - first:
+      213: -2623217853364775461
+    second: Idle (32x32)_128
+  - first:
+      213: -5299143557993107488
+    second: Idle (32x32)_129
+  - first:
+      213: 3619476802368255200
+    second: Idle (32x32)_130
+  - first:
+      213: 6833370283489779168
+    second: Idle (32x32)_131
+  - first:
+      213: 2063224377588685914
+    second: Idle (32x32)_132
+  - first:
+      213: -1218737107959988369
+    second: Idle (32x32)_133
+  - first:
+      213: -4377322365679890004
+    second: Idle (32x32)_134
+  - first:
+      213: 2540309355258583742
+    second: Idle (32x32)_135
+  - first:
+      213: -7717107812181534395
+    second: Idle (32x32)_136
+  - first:
+      213: -2464147679798174725
+    second: Idle (32x32)_137
+  - first:
+      213: 6255242802176314205
+    second: Idle (32x32)_138
+  - first:
+      213: -4820659941176005082
+    second: Idle (32x32)_139
+  - first:
+      213: -2613411817574285817
+    second: Idle (32x32)_140
+  - first:
+      213: -434913155753364978
+    second: Idle (32x32)_141
+  - first:
+      213: 8848960881381150123
+    second: Idle (32x32)_142
+  - first:
+      213: 1296570340968542497
+    second: Idle (32x32)_143
+  - first:
+      213: 8501647991973097386
+    second: Idle (32x32)_144
+  - first:
+      213: 7281916217458963242
+    second: Idle (32x32)_145
+  - first:
+      213: -2512562572084444924
+    second: Idle (32x32)_146
+  - first:
+      213: 8169194689669862097
+    second: Idle (32x32)_147
+  - first:
+      213: 9082470939993933785
+    second: Idle (32x32)_148
+  - first:
+      213: 2075118893733402756
+    second: Idle (32x32)_149
+  - first:
+      213: 1240296722151458902
+    second: Idle (32x32)_150
+  - first:
+      213: -5758183739552639921
+    second: Idle (32x32)_151
+  - first:
+      213: 2980292583515943785
+    second: Idle (32x32)_152
+  - first:
+      213: -2678958048147156007
+    second: Idle (32x32)_153
+  - first:
+      213: 5700845641178828570
+    second: Idle (32x32)_154
+  - first:
+      213: -732360652847556260
+    second: Idle (32x32)_155
+  - first:
+      213: -4307591418861687022
+    second: Idle (32x32)_156
+  - first:
+      213: 7871181446992933004
+    second: Idle (32x32)_157
+  - first:
+      213: 828903124347700765
+    second: Idle (32x32)_158
+  - first:
+      213: -2275326506665285058
+    second: Idle (32x32)_159
+  - first:
+      213: 3853150228984066971
+    second: Idle (32x32)_160
+  - first:
+      213: -333464331618580893
+    second: Idle (32x32)_161
+  - first:
+      213: -8201818555382694959
+    second: Idle (32x32)_162
+  - first:
+      213: 5746198755766329795
+    second: Idle (32x32)_163
+  - first:
+      213: -1552527933241369837
+    second: Idle (32x32)_164
+  - first:
+      213: -3845301418572217495
+    second: Idle (32x32)_165
+  - first:
+      213: 3417038830731339198
+    second: Idle (32x32)_166
+  - first:
+      213: 1861561777118743222
+    second: Idle (32x32)_167
+  - first:
+      213: -44366901140146397
+    second: Idle (32x32)_168
+  - first:
+      213: -7980069000529142839
+    second: Idle (32x32)_169
+  - first:
+      213: 7905013314865464446
+    second: Idle (32x32)_170
+  - first:
+      213: -2433279481276147847
+    second: Idle (32x32)_171
+  - first:
+      213: 1081022518489111983
+    second: Idle (32x32)_172
+  - first:
+      213: -1657539004861085604
+    second: Idle (32x32)_173
+  - first:
+      213: 8175759671911696692
+    second: Idle (32x32)_174
+  - first:
+      213: 7968829534116678502
+    second: Idle (32x32)_175
+  - first:
+      213: 8823648670214214508
+    second: Idle (32x32)_176
+  - first:
+      213: -5537589646013868218
+    second: Idle (32x32)_177
+  - first:
+      213: 3717374913562105298
+    second: Idle (32x32)_178
+  - first:
+      213: 6444956644372753663
+    second: Idle (32x32)_179
+  - first:
+      213: -3852917824120193762
+    second: Idle (32x32)_180
+  - first:
+      213: -8857317093309326098
+    second: Idle (32x32)_181
+  - first:
+      213: -1079951632759916098
+    second: Idle (32x32)_182
+  - first:
+      213: -991288821541406081
+    second: Idle (32x32)_183
+  - first:
+      213: -276475174239462005
+    second: Idle (32x32)_184
+  - first:
+      213: 6549778646392912145
+    second: Idle (32x32)_185
+  - first:
+      213: -5645789990331693963
+    second: Idle (32x32)_186
+  - first:
+      213: 2274491404088832136
+    second: Idle (32x32)_187
+  - first:
+      213: -3321552301810082275
+    second: Idle (32x32)_188
+  - first:
+      213: -5158897290559644376
+    second: Idle (32x32)_189
+  - first:
+      213: 87937584318697582
+    second: Idle (32x32)_190
+  - first:
+      213: 578516268282201919
+    second: Idle (32x32)_191
+  - first:
+      213: 7346829590726227579
+    second: Idle (32x32)_192
+  - first:
+      213: 6963579230763439195
+    second: Idle (32x32)_193
+  - first:
+      213: 790179303731562627
+    second: Idle (32x32)_194
+  - first:
+      213: 5405196771190150889
+    second: Idle (32x32)_195
+  - first:
+      213: 3015508864783271799
+    second: Idle (32x32)_196
+  - first:
+      213: 5922642336130523067
+    second: Idle (32x32)_197
+  - first:
+      213: -9131079442842300212
+    second: Idle (32x32)_198
+  - first:
+      213: 8847927785120725401
+    second: Idle (32x32)_199
+  - first:
+      213: 5754146590095325676
+    second: Idle (32x32)_200
+  - first:
+      213: -2995869042010073138
+    second: Idle (32x32)_201
+  - first:
+      213: 4674669142325489341
+    second: Idle (32x32)_202
+  - first:
+      213: -4658708549686246692
+    second: Idle (32x32)_203
+  - first:
+      213: -2784762668636104979
+    second: Idle (32x32)_204
+  - first:
+      213: -304635536605946067
+    second: Idle (32x32)_205
+  - first:
+      213: -6520983359445684193
+    second: Idle (32x32)_0
+  - first:
+      213: -2367308649760316995
+    second: Idle (32x32)_1
+  - first:
+      213: 7964149436182956411
+    second: Idle (32x32)_2
+  - first:
+      213: 3878748148282017809
+    second: Idle (32x32)_3
+  - first:
+      213: 1944507507925934277
+    second: Idle (32x32)_4
+  - first:
+      213: -3772897812203426271
+    second: Idle (32x32)_5
+  - first:
+      213: -683780554743219525
+    second: Idle (32x32)_6
+  - first:
+      213: 8879675951325287044
+    second: Idle (32x32)_7
+  - first:
+      213: -6784881739139047245
+    second: Idle (32x32)_8
+  - first:
+      213: -3660273561723802414
+    second: Idle (32x32)_9
+  - first:
+      213: -6264499755992645921
+    second: Idle (32x32)_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -40,8 +691,8 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
-  spriteExtrude: 1
+  spriteMode: 2
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
@@ -64,7 +715,31 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -73,7 +748,238 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Idle (32x32)_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 0
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f10b10a2f20d085a0800000000000000
+      internalID: -6520983359445684193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 0
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db1a3595351a52fd0800000000000000
+      internalID: -2367308649760316995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_2
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 0
+        width: 24
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7900d167b7568e60800000000000000
+      internalID: 7964149436182956411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_3
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 0
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118cd8fe3e414d530800000000000000
+      internalID: 3878748148282017809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 0
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c06109a6474cfa10800000000000000
+      internalID: 1944507507925934277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_5
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 0
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e24c1fd69f3abc0800000000000000
+      internalID: -3772897812203426271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_6
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 0
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbaf5325539b286f0800000000000000
+      internalID: -683780554743219525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_7
+      rect:
+        serializedVersion: 2
+        x: 230
+        y: 0
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 482925f2b32fa3b70800000000000000
+      internalID: 8879675951325287044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_8
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 0
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b0259f810247d1a0800000000000000
+      internalID: -6784881739139047245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_9
+      rect:
+        serializedVersion: 2
+        x: 294
+        y: 0
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dce2bca698143dc0800000000000000
+      internalID: -3660273561723802414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle (32x32)_10
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 0
+        width: 24
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fde7984a9a60019a0800000000000000
+      internalID: -6264499755992645921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
