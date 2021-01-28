@@ -3,12 +3,34 @@
 namespace PixelAdventure
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Animator))]
     public class PlayerController : MonoBehaviour
     {
-        Rigidbody2D _rb;
-
         [SerializeField] InputReader _playerInput = default;
+
+        [Header("Movement")]
+        public float _jumpForce = 5.0f;
+        [HideInInspector] public Vector2 moveInput;
+        [HideInInspector] public Vector2 moveVector;
+        bool _jumpInput = false;
+
+        [HideInInspector] public bool isWalking = false;
+        [HideInInspector] public bool isAirborne = false;
+
+        [Space]
+        [Header("Animation parameters")]
+        [SerializeField] string _walkingParameter = "";
+        [SerializeField] string _airBorneParameter = "";
+
+        [HideInInspector] public int walkingHash;
+        [HideInInspector] public int airBorneHash;
+
+        [Space]
+        [Header("Gravity")]
+        [Tooltip("Negative value which represents gravity")]
+        public float verticalPull;
+
+
         void OnEnable()
         {
             _playerInput.moveEvent += OnMoveInitiated;
@@ -18,15 +40,7 @@ namespace PixelAdventure
         }
         void Awake()
         {
-            _rb = GetComponent<Rigidbody2D>();
-        }
-
-        void FixedUpdate()
-        {
-            _moveVector.y = _jumpInput ? 1.0f : 0.0f;
-            _moveVector.y *= _jumpForce;
-
-            _rb.MovePosition(_rb.position + _moveVector * Time.fixedDeltaTime);
+            GetParameterHash();
         }
 
         void OnDisable()
@@ -38,18 +52,13 @@ namespace PixelAdventure
         }
 
         #region Movement
-        Vector2 _moveVector;
-        bool _jumpInput = false;
-        [SerializeField] float _moveSpeed = 5.0f;
-        [SerializeField] float _jumpForce = 5.0f;
-        void OnMoveInitiated(Vector2 moveInput)
+        void OnMoveInitiated(Vector2 input)
         {
-            _moveVector.x = moveInput.x * _moveSpeed;
-            _moveVector.y = 0.0f;
+            moveInput = input;
         }
         void OnMoveCanceled()
         {
-            _moveVector = Vector2.zero;
+            moveInput = Vector2.zero;
         }
         void OnJumpInitiated()
         {
@@ -58,6 +67,13 @@ namespace PixelAdventure
         void OnJumpCanceled()
         {
             _jumpInput = false;
+        }
+        #endregion
+        #region Animator
+        void GetParameterHash()
+        {
+            walkingHash = Animator.StringToHash(_walkingParameter);
+            airBorneHash = Animator.StringToHash(_airBorneParameter);
         }
         #endregion
     }
