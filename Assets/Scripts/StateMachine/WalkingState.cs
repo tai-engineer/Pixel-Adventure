@@ -17,36 +17,41 @@ namespace PixelAdventure
 
         Vector2 _currentPosition;
         WalkingStateSO _originSO;
+        Transform _transform;
+
         public override void Awake(StateMachine stateMachine)
         {
-            _originSO = (WalkingStateSO)base.originSO;
-
-            _stateMachine = stateMachine;
             _player = stateMachine.GetComponent<PlayerController>();
             _animator = stateMachine.GetComponent<Animator>();
             _rb = stateMachine.GetComponent<Rigidbody2D>();
+
+            _originSO = (WalkingStateSO)base.originSO;
+            _stateMachine = stateMachine;
+            _transform = stateMachine.gameObject.transform;
         }
         public override void OnStateEnter()
         {
-            _animator.SetBool(_player.walkingHash, _player.isWalking);
+            _animator.SetBool(_player.walkingHash, _player.IsWalking);
         }
 
         public override void OnStateExit()
         {
-            _player.isWalking = false;
+            
         }
 
         public override void OnStateUpdate()
         {
-            _player.isWalking = _player.moveVector.x != 0;
-
-            if (!_player.isWalking)
+            if (!_player.IsWalking)
                 _stateMachine.Transition(StateMachine.EnumState.IDLE);
+            //if (_player.JumpInput)
+            //    _stateMachine.Transition(StateMachine.EnumState.JUMP_ASCENDING);
+            //if (!_player.IsGrounded)
+            //    _stateMachine.Transition(StateMachine.EnumState.JUMP_DESCENDING);
         }
 
         public override void OnStateFixedUpdate()
         {
-            _currentPosition = _rb.position;
+            _currentPosition = _transform.position;
             _player.moveVector.x = _player.moveInput.x * _originSO.moveSpeed;
             //_player.moveVector.y = _player.verticalPull; // Apply gravity
             // moveVector should be zero vector in normal case

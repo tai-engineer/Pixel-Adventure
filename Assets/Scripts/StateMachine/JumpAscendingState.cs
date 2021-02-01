@@ -2,17 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpAscendingState : MonoBehaviour
+namespace PixelAdventure
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "JumpAscendingState", menuName = "State Machines/States/JumpAscending State")]
+    public class JumpAscendingStateSO : StateSO<JumpAscendingState> { }
+    public class JumpAscendingState : State
     {
-        
-    }
+        PlayerController _player;
+        Animator _animator;
+        StateMachine _stateMachine;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public override void Awake(StateMachine stateMachine)
+        {
+            _stateMachine = stateMachine;
+
+            _player = stateMachine.GetComponent<PlayerController>();
+            _animator = stateMachine.GetComponent<Animator>();
+        }
+        public override void OnStateEnter()
+        {
+
+        }
+
+        public override void OnStateExit()
+        {
+
+        }
+
+        public override void OnStateUpdate()
+        {
+
+        }
+
+        public override void OnStateFixedUpdate()
+        {
+            
+        }
     }
 }
