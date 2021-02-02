@@ -165,10 +165,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f2c9f564fb1f4d409bb1dba9522b124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _idleState: {fileID: 11400000, guid: 6f7ef4551d1e5494e8cf0a470f5df680, type: 2}
-  _walkingState: {fileID: 11400000, guid: 374d09a83726c5b4a868f49566c22c32, type: 2}
-  _jumpAscendingState: {fileID: 0}
-  _jumpDescendingState: {fileID: 0}
+  _idleState: {fileID: 11400000, guid: bd2035637b768ef4483cd943771973ea, type: 2}
+  _walkingState: {fileID: 11400000, guid: 1d8a5c65c19311544a03f9dac901041c, type: 2}
+  _jumpAscendingState: {fileID: 11400000, guid: 1b24ac6254420564da86762652250fa9,
+    type: 2}
+  _jumpDescendingState: {fileID: 11400000, guid: 1c5e9bad08015894893c5e7fa205b3e1,
+    type: 2}
 --- !u!114 &9063970383652646326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,11 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerInput: {fileID: 11400000, guid: e8928bdcb35ff3e469b7acdefcec7ceb, type: 2}
-  _jumpForce: 5
   moveInput: {x: 0, y: 0}
   moveVector: {x: 0, y: 0}
-  isWalking: 0
-  isAirborne: 0
   _walkingParameter: IsWalking
   _airBorneParameter: IsAirborne
   walkingHash: 0
