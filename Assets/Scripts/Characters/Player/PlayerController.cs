@@ -16,7 +16,9 @@ namespace PixelAdventure
 
         public bool IsWalking { get; private set; } = false;
         public bool IsGrounded { get; private set; } = false;
+        public bool IsAirborne { get; set; } = false;
         public bool JumpInput { get; private set; } = false;
+
         [Space]
         [Header("Animation parameters")]
         [SerializeField] string _walkingParameter = "";
@@ -30,9 +32,12 @@ namespace PixelAdventure
         [Tooltip("Negative value which represents gravity")]
         public float verticalPull;
 
+        [Space]
+        [Header("Ground")]
+        [Tooltip("Layer for ground check")]
+        public LayerMask groundLayer;
+
         #region Components
-        Vector2 _boxSize;
-        Vector2 _boxCenter;
         BoxCollider2D _box;
         SpriteRenderer _renderer;
         #endregion
@@ -51,11 +56,6 @@ namespace PixelAdventure
             GetParameterHash();
         }
 
-        void Start()
-        {
-            _boxSize = _box.size;
-            _boxCenter = _box.bounds.center;
-        }
         void Update()
         {
             IsWalking = moveInput.x != 0;
@@ -101,14 +101,14 @@ namespace PixelAdventure
         }
         #endregion
         #region Ground Check
-        float radiusY;
-        Vector2 bottom;
+        float _radiusY;
+        Vector2 _bottom;
+        float _distance = 0.03f;
         bool GroundCheck()
         {
-            radiusY = _boxSize.y * 0.5f;
-            bottom = new Vector2(_boxCenter.x, _boxCenter.y - radiusY);
-            float distance = 0.3f;
-            RaycastHit2D hit = Physics2D.Raycast(bottom, new Vector2(0, -1), distance, gameObject.layer);
+            _radiusY = _box.size.y * 0.5f;
+            _bottom = new Vector2(_box.bounds.center.x, _box.bounds.center.y - _radiusY);
+            RaycastHit2D hit = Physics2D.Raycast(_bottom, new Vector2(0, -1), _distance, groundLayer);
             return hit.collider != null;
         }
         #endregion
@@ -119,6 +119,12 @@ namespace PixelAdventure
         {
             _renderer.flipX = _direction == FaceDirection.Right ? false : true;
             _previousDirection = _direction;
+        }
+        #endregion
+        #region Gizmos
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawRay(_bottom, new Vector2(0, -1 * _distance));
         }
         #endregion
     }

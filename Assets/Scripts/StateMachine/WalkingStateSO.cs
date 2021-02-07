@@ -57,6 +57,7 @@ namespace PixelAdventure
             // moveVector should be zero vector in normal case
             // if external forces apply to character, moveVector will be changed
             _rb.MovePosition(_currentPosition + _player.moveVector * Time.fixedDeltaTime);
+            _player.moveVector = Vector2.zero;
         }
     }
 }

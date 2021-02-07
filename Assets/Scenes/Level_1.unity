@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1953702185}
   - component: {fileID: 1953702184}
   - component: {fileID: 1953702183}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Collidable
   m_TagString: Untagged
   m_Icon: {fileID: 0}

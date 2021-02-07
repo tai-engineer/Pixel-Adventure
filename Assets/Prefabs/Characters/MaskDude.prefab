@@ -191,3 +191,6 @@ MonoBehaviour:
   walkingHash: 0
   airBorneHash: 0
   verticalPull: -5
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
