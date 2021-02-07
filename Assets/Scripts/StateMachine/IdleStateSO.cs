@@ -33,8 +33,8 @@ namespace PixelAdventure
         {
             if (_player.IsWalking)
                 _stateMachine.Transition(StateMachine.EnumState.WALKING);
-            //if (_player.JumpInput)
-            //    _stateMachine.Transition(StateMachine.EnumState.JUMP_ASCENDING);
+            if (_player.JumpInput)
+                _stateMachine.Transition(StateMachine.EnumState.JUMP_ASCENDING);
             //if (!_player.IsGrounded)
             //    _stateMachine.Transition(StateMachine.EnumState.JUMP_DESCENDING);
         }
