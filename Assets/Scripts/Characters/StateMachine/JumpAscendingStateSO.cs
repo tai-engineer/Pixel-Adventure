@@ -7,9 +7,8 @@ namespace PixelAdventure
     [CreateAssetMenu(fileName = "JumpAscendingState", menuName = "State Machines/States/JumpAscending State")]
     public class JumpAscendingStateSO : StateSO<JumpAscendingState>
     {
-        public float lowJumpForce = 3f;
-        public float highJumpForce = 5f;
-        public float holdingTime = .2f;
+        public float JumpForce = 4f;
+        public float holdingTime = .3f;
     }
     public class JumpAscendingState : State
     {
@@ -17,6 +16,7 @@ namespace PixelAdventure
         Animator _animator;
         StateMachine _stateMachine;
         Rigidbody2D _rb;
+        Protagonist _protagonist;
 
         JumpAscendingStateSO _originSO;
         
@@ -29,8 +29,8 @@ namespace PixelAdventure
         const float GRAVITY_MULTIPLIER = .6f;
         const float GRAVITY_ADDITIONAL_MULTIPLIER = .03f;
 
-        float _jumpHoldingStart = 0f;
-        bool _isHolding = false;
+        float _jumpHoldingTime = 0f;
+        float _additionalForce = 0f;
         public override void Awake(StateMachine stateMachine)
         {
             _stateMachine = stateMachine;
@@ -38,6 +38,7 @@ namespace PixelAdventure
             _player = stateMachine.GetComponent<PlayerController>();
             _animator = stateMachine.GetComponent<Animator>();
             _rb = stateMachine.GetComponent<Rigidbody2D>();
+            _protagonist = stateMachine.GetComponent<Protagonist>();
 
             _originSO = (JumpAscendingStateSO)base.originSO;
             _transform = stateMachine.gameObject.transform;
@@ -45,13 +46,13 @@ namespace PixelAdventure
         public override void OnStateEnter()
         {
             _player.IsAirborne = true;
-            _animator.SetBool(_player.airBorneHash, _player.IsAirborne);
+            _animator.SetBool(_protagonist.airBorneHash, _player.IsAirborne);
 
-            _verticalMovement = _originSO.lowJumpForce;
+            _verticalMovement = _originSO.JumpForce;
 
             _gravityEffect = Physics2D.gravity.y * GRAVITY_ADDITIONAL_MULTIPLIER * GRAVITY_MULTIPLIER;
 
-            _jumpHoldingStart = Time.time;
+            _jumpHoldingTime = _originSO.holdingTime;
         }
 
         public override void OnStateExit()
@@ -61,11 +62,17 @@ namespace PixelAdventure
 
         public override void OnStateUpdate()
         {
-            // Apply high jump for only once
-            if (Time.time > _jumpHoldingStart + _originSO.holdingTime && _player.JumpInput && !_isHolding)
+            // Apply high jump when holding jump button
+            if(_player.JumpInput)
             {
-                _verticalMovement += _originSO.highJumpForce - _originSO.lowJumpForce;
-                _isHolding = true;
+                if (_jumpHoldingTime > 0)
+                {
+                    _jumpHoldingTime -= Time.deltaTime; 
+                }
+                else
+                {
+                    _additionalForce = 0.15f;
+                }
             }
 
             if (_player.IsGrounded && !_player.IsWalking)
@@ -78,8 +85,11 @@ namespace PixelAdventure
         {
             _currentPosition = _transform.position;
 
+            _additionalForce = _additionalForce > 0 ? _additionalForce - Time.fixedDeltaTime : 0f; 
+            Debug.Log("_additionalForce: " + _additionalForce);
+            _verticalMovement += _additionalForce;
             // Gravity always has negative value
-             _verticalMovement += _gravityEffect;
+            _verticalMovement += _gravityEffect;
 
             _player.moveVector.y = _verticalMovement;
 
