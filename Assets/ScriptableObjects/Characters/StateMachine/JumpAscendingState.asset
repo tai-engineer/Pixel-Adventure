@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a1f1f4124dbf54786bebfbb373978e, type: 3}
   m_Name: JumpAscendingState
   m_EditorClassIdentifier: 
-  lowJumpForce: 3
-  highJumpForce: 5
+  JumpForce: 4
   holdingTime: 0.3

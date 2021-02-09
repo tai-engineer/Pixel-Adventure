@@ -8,29 +8,17 @@ namespace PixelAdventure
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerController : MonoBehaviour
     {
-        [SerializeField] InputReader _playerInput = default;
+        [Space]
+        [Header("Input")]
+        [SerializeField] InputReader _input = default;
 
-        [Header("Movement")]
         [HideInInspector] public Vector2 moveInput;
         [HideInInspector] public Vector2 moveVector;
 
         public bool IsWalking { get; private set; } = false;
         public bool IsGrounded { get; private set; } = false;
         public bool IsAirborne { get; set; } = false;
-        public bool JumpInput { get; private set; } = false;
-
-        [Space]
-        [Header("Animation parameters")]
-        [SerializeField] string _walkingParameter = "";
-        [SerializeField] string _airBorneParameter = "";
-
-        [HideInInspector] public int walkingHash;
-        [HideInInspector] public int airBorneHash;
-
-        [Space]
-        [Header("Gravity")]
-        [Tooltip("Negative value which represents gravity")]
-        public float verticalPull;
+        public bool JumpInput { get; private set; }
 
         [Space]
         [Header("Ground")]
@@ -43,17 +31,15 @@ namespace PixelAdventure
         #endregion
         void OnEnable()
         {
-            _playerInput.moveEvent += OnMoveInitiated;
-            _playerInput.moveCanceledEvent += OnMoveCanceled;
-            _playerInput.jumpEvent += OnJumpInitiated;
-            _playerInput.jumpCanceledEvent += OnJumpCanceled;
+            _input.moveEvent += OnMoveInitiated;
+            _input.moveCanceledEvent += OnMoveCanceled;
+            _input.jumpEvent += OnJumpInitiated;
+            _input.jumpCanceledEvent += OnJumpCanceled;
         }
         void Awake()
         {
             _box = GetComponent<BoxCollider2D>();
             _renderer = GetComponent<SpriteRenderer>();
-
-            GetParameterHash();
         }
 
         void Update()
@@ -66,10 +52,10 @@ namespace PixelAdventure
         }
         void OnDisable()
         {
-            _playerInput.moveEvent -= OnMoveInitiated;
-            _playerInput.moveCanceledEvent -= OnMoveCanceled;
-            _playerInput.jumpEvent -= OnJumpInitiated;
-            _playerInput.jumpCanceledEvent -= OnJumpCanceled;
+            _input.moveEvent -= OnMoveInitiated;
+            _input.moveCanceledEvent -= OnMoveCanceled;
+            _input.jumpEvent -= OnJumpInitiated;
+            _input.jumpCanceledEvent -= OnJumpCanceled;
         }
 
         #region Handle Movement Event
@@ -91,13 +77,6 @@ namespace PixelAdventure
         void OnJumpCanceled()
         {
             JumpInput = false;
-        }
-        #endregion
-        #region Animator
-        void GetParameterHash()
-        {
-            walkingHash = Animator.StringToHash(_walkingParameter);
-            airBorneHash = Animator.StringToHash(_airBorneParameter);
         }
         #endregion
         #region Ground Check

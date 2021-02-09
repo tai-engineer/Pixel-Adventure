@@ -10,18 +10,19 @@ namespace PixelAdventure
         PlayerController _player;
         Animator _animator;
         StateMachine _stateMachine;
-
+        Protagonist _protagonist;
         public override void Awake(StateMachine stateMachine)
         {
             _player = stateMachine.GetComponent<PlayerController>();
             _animator = stateMachine.GetComponent<Animator>();
+            _protagonist = stateMachine.GetComponent<Protagonist>();
 
             _stateMachine = stateMachine;
         }
         public override void OnStateEnter()
         {
-            _animator.SetBool(_player.walkingHash, false);
-            _animator.SetBool(_player.airBorneHash, false);
+            _animator.SetBool(_protagonist.walkingHash, false);
+            _animator.SetBool(_protagonist.airBorneHash, false);
         }
 
         public override void OnStateExit()

@@ -14,6 +14,7 @@ namespace PixelAdventure
         Animator _animator;
         Rigidbody2D _rb;
         StateMachine _stateMachine;
+        Protagonist _protagonist;
 
         Vector2 _currentPosition;
         WalkingStateSO _originSO;
@@ -24,6 +25,7 @@ namespace PixelAdventure
             _player = stateMachine.GetComponent<PlayerController>();
             _animator = stateMachine.GetComponent<Animator>();
             _rb = stateMachine.GetComponent<Rigidbody2D>();
+            _protagonist = stateMachine.GetComponent<Protagonist>();
 
             _originSO = (WalkingStateSO)base.originSO;
             _stateMachine = stateMachine;
@@ -31,7 +33,7 @@ namespace PixelAdventure
         }
         public override void OnStateEnter()
         {
-            _animator.SetBool(_player.walkingHash, _player.IsWalking);
+            _animator.SetBool(_protagonist.walkingHash, _player.IsWalking);
         }
 
         public override void OnStateExit()
