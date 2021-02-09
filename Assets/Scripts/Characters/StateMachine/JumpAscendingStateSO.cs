@@ -7,8 +7,10 @@ namespace PixelAdventure
     [CreateAssetMenu(fileName = "JumpAscendingState", menuName = "State Machines/States/JumpAscending State")]
     public class JumpAscendingStateSO : StateSO<JumpAscendingState>
     {
-        public float JumpForce = 4f;
-        public float holdingTime = .3f;
+        public float jumpForce = 4f;
+        [Tooltip("Extra force when holding jump")]
+        [Range(0.1f, 0.4f)] public float additionalForce = 0.1f;
+        [Range(0.1f, 0.5f)] public float holdingTime = .3f;
     }
     public class JumpAscendingState : State
     {
@@ -31,6 +33,8 @@ namespace PixelAdventure
 
         float _jumpHoldingTime = 0f;
         float _additionalForce = 0f;
+        bool _hasHighJump = false;
+        bool _isHolding = false;
         public override void Awake(StateMachine stateMachine)
         {
             _stateMachine = stateMachine;
@@ -48,7 +52,7 @@ namespace PixelAdventure
             _player.IsAirborne = true;
             _animator.SetBool(_protagonist.airBorneHash, _player.IsAirborne);
 
-            _verticalMovement = _originSO.JumpForce;
+            _verticalMovement = _originSO.jumpForce;
 
             _gravityEffect = Physics2D.gravity.y * GRAVITY_ADDITIONAL_MULTIPLIER * GRAVITY_MULTIPLIER;
 
@@ -63,7 +67,7 @@ namespace PixelAdventure
         public override void OnStateUpdate()
         {
             // Apply high jump when holding jump button
-            if(_player.JumpInput)
+            if(_player.JumpInput && !_hasHighJump)
             {
                 if (_jumpHoldingTime > 0)
                 {
@@ -71,7 +75,8 @@ namespace PixelAdventure
                 }
                 else
                 {
-                    _additionalForce = 0.15f;
+                    _isHolding = true;
+                    _additionalForce = _originSO.additionalForce;
                 }
             }
 
@@ -85,9 +90,12 @@ namespace PixelAdventure
         {
             _currentPosition = _transform.position;
 
-            _additionalForce = _additionalForce > 0 ? _additionalForce - Time.fixedDeltaTime : 0f; 
-            Debug.Log("_additionalForce: " + _additionalForce);
-            _verticalMovement += _additionalForce;
+            if(_isHolding)
+            {
+                _verticalMovement += _additionalForce;
+                _hasHighJump = true;
+                _isHolding = false;
+            }
             // Gravity always has negative value
             _verticalMovement += _gravityEffect;
 
