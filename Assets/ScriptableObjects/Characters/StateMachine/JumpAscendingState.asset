@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: JumpAscendingState
   m_EditorClassIdentifier: 
   jumpForce: 4
-  additionalForce: 0.1
+  additionalForce: 0.4
   holdingTime: 0.3
