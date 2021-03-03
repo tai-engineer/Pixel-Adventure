@@ -13,7 +13,7 @@ namespace PixelAdventure
         [HideInInspector] public int walkingHash;
         [HideInInspector] public int airBorneHash;
 
-        void Awake()
+        void OnEnable()
         {
             GetParameterHash();
         }

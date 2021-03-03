@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65f42c1b999c5c48956e2253840c1b9, type: 3}
   m_Name: WalkingState
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 13
+  acceleration: 203

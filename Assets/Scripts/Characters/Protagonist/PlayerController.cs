@@ -6,7 +6,8 @@ namespace PixelAdventure
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(BoxCollider2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class PlayerController : MonoBehaviour
+    [RequireComponent(typeof(StateMachine))]
+    public class PlayerController : CharacterController
     {
         [Space]
         [Header("Input")]
@@ -28,6 +29,9 @@ namespace PixelAdventure
         #region Components
         BoxCollider2D _box;
         SpriteRenderer _renderer;
+        Rigidbody2D _rb;
+
+        StateMachine _stateMachine;
         #endregion
         void OnEnable()
         {
@@ -40,8 +44,9 @@ namespace PixelAdventure
         {
             _box = GetComponent<BoxCollider2D>();
             _renderer = GetComponent<SpriteRenderer>();
+            _rb = GetComponent<Rigidbody2D>();
+            _stateMachine = GetComponent<StateMachine>();
         }
-
         void Update()
         {
             IsWalking = moveInput.x != 0;
@@ -49,6 +54,14 @@ namespace PixelAdventure
 
             if (_direction != _previousDirection)
                 Flip();
+
+            _stateMachine.OnUpdate();
+        }
+
+        void FixedUpdate()
+        {
+            _stateMachine.OnFixedUpdate();
+            Move(moveVector);
         }
         void OnDisable()
         {
@@ -58,6 +71,10 @@ namespace PixelAdventure
             _input.jumpCanceledEvent -= OnJumpCanceled;
         }
 
+        protected override void Move(Vector2 nextMovement)
+        {
+            _rb.MovePosition(_rb.position + nextMovement * Time.fixedDeltaTime);
+        }
         #region Handle Movement Event
         void OnMoveInitiated(Vector2 input)
         {

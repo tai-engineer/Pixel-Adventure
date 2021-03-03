@@ -138,6 +138,26 @@ PrefabInstance:
       propertyPath: _airBorneParameter
       value: IsAirborne
       objectReference: {fileID: 0}
+    - target: {fileID: 9063970383652646320, guid: 410ede81131276448aa27ef0110960d7,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063970383652646321, guid: 410ede81131276448aa27ef0110960d7,
+        type: 3}
+      propertyPath: _character
+      value: 
+      objectReference: {fileID: 1992734266}
+    - target: {fileID: 9063970383652646323, guid: 410ede81131276448aa27ef0110960d7,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063970383652646323, guid: 410ede81131276448aa27ef0110960d7,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 9063970383652646325, guid: 410ede81131276448aa27ef0110960d7,
         type: 3}
       propertyPath: m_Name
@@ -154,15 +174,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e8928bdcb35ff3e469b7acdefcec7ceb,
         type: 2}
+    - target: {fileID: 9063970383652646326, guid: 410ede81131276448aa27ef0110960d7,
+        type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 9063970383652646327, guid: 410ede81131276448aa27ef0110960d7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.07
+      value: 15.03
       objectReference: {fileID: 0}
     - target: {fileID: 9063970383652646327, guid: 410ede81131276448aa27ef0110960d7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.8
+      value: 4.882
       objectReference: {fileID: 0}
     - target: {fileID: 9063970383652646327, guid: 410ede81131276448aa27ef0110960d7,
         type: 3}
@@ -532,7 +557,10 @@ GameObject:
   - component: {fileID: 1140373827}
   - component: {fileID: 1140373829}
   - component: {fileID: 1140373828}
-  m_Layer: 8
+  - component: {fileID: 1140373832}
+  - component: {fileID: 1140373831}
+  - component: {fileID: 1140373830}
+  m_Layer: 9
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2995,6 +3023,133 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!66 &1140373830
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140373826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 0
+  m_GenerationType: 0
+  m_EdgeRadius: 0
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1140373832}
+    m_ColliderPaths:
+    - - X: 300000000
+        Y: 160000000
+      - X: 0
+        Y: 160000000
+      - X: 0
+        Y: 90000000
+      - X: -10000000
+        Y: 90000000
+      - X: -10000000
+        Y: 0
+      - X: 250000000
+        Y: 0
+      - X: 250000000
+        Y: -10000000
+      - X: 300000000
+        Y: -10000000
+    - - X: 50000000
+        Y: 40000000
+      - X: 50000000
+        Y: 60000000
+      - X: 30000000
+        Y: 60000000
+      - X: 30000000
+        Y: 80000000
+      - X: 10000000
+        Y: 80000000
+      - X: 10000000
+        Y: 140000000
+      - X: 20000000
+        Y: 140000000
+      - X: 20000000
+        Y: 150000000
+      - X: 290000000
+        Y: 150000000
+      - X: 290000000
+        Y: 120000000
+      - X: 260000000
+        Y: 120000000
+      - X: 260000000
+        Y: 50000000
+      - X: 240000000
+        Y: 50000000
+      - X: 240000000
+        Y: 40000000
+  m_CompositePaths:
+    m_Paths:
+    - - {x: 29.999971, y: -1}
+      - {x: 29.999971, y: 16}
+      - {x: 0, y: 15.999971}
+      - {x: -0.0000294, y: 9}
+      - {x: -1, y: 8.99997}
+      - {x: -0.99997073, y: 0}
+      - {x: 25, y: -0.0000294}
+      - {x: 25.000029, y: -1}
+    - - {x: 24, y: 4.0000296}
+      - {x: 5, y: 4.0000296}
+      - {x: 4.999971, y: 6}
+      - {x: 3, y: 6.0000296}
+      - {x: 2.999971, y: 8}
+      - {x: 1, y: 8.00003}
+      - {x: 1.0000294, y: 14}
+      - {x: 2, y: 14.000029}
+      - {x: 2.0000293, y: 15}
+      - {x: 29, y: 14.999971}
+      - {x: 28.999971, y: 12}
+      - {x: 26, y: 11.99997}
+      - {x: 25.999971, y: 5}
+      - {x: 24, y: 4.999971}
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
+--- !u!50 &1140373831
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140373826}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!19719996 &1140373832
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140373826}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1001 &1555488533
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3345,6 +3500,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8973a1f7c95b044ea2e059467d1cd09, type: 3}
+--- !u!114 &1992734266 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9063970383652646326, guid: 410ede81131276448aa27ef0110960d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 85529574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0bf7547cc3b344db3a8323b7c3d554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2064452393
 PrefabInstance:
   m_ObjectHideFlags: 0

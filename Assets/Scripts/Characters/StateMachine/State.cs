@@ -4,13 +4,15 @@ using UnityEngine;
 
 namespace PixelAdventure
 {
-    public class State
+    public abstract class State
     {
         public StateSO originSO { get; set; }
-        public virtual void Awake(StateMachine stateMachine) { }
-        public virtual void OnStateEnter() { }
-        public virtual void OnStateExit() { }
-        public virtual void OnStateUpdate() { }
-        public virtual void OnStateFixedUpdate() { }
+        public abstract void Awake(StateMachine stateMachine);
+        public virtual void OnStateEnter() => SetAnimations();
+        public abstract void OnStateExit();
+        public abstract void OnStateUpdate();
+        public abstract void OnStateFixedUpdate();
+
+        protected abstract void SetAnimations();
     }
 }

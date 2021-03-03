@@ -19,16 +19,9 @@ namespace PixelAdventure
 
             _stateMachine = stateMachine;
         }
-        public override void OnStateEnter()
-        {
-            _animator.SetBool(_protagonist.walkingHash, false);
-            _animator.SetBool(_protagonist.airBorneHash, false);
-        }
+        public override void OnStateEnter() => base.OnStateEnter();
 
-        public override void OnStateExit()
-        {
-
-        }
+        public override void OnStateExit() { }
 
         public override void OnStateUpdate()
         {
@@ -40,9 +33,17 @@ namespace PixelAdventure
             //    _stateMachine.Transition(StateMachine.EnumState.JUMP_DESCENDING);
         }
 
-        public override void OnStateFixedUpdate()
+        public override void OnStateFixedUpdate() => StopMovement();
+
+        protected override void SetAnimations()
         {
-            //_player.moveVector.y = _player.verticalPull; // Apply gravity
+            _animator.SetBool(_protagonist.walkingHash, false);
+            _animator.SetBool(_protagonist.airBorneHash, false);
+        }
+
+        void StopMovement()
+        {
+            _player.moveVector = Vector2.zero;
         }
     }
 }

@@ -16,16 +16,16 @@ namespace PixelAdventure
         {
             SetInitialState();
         }
-        void Update()
+        public void OnUpdate()
         {
             _currentState.OnStateUpdate();
         }
 
-        void FixedUpdate()
+        public void OnFixedUpdate()
         {
             _currentState.OnStateFixedUpdate();
         }
-        public void SetInitialState()
+        void SetInitialState()
         {
             _currentState = _idleState.GetState();
             _currentState.Awake(this);

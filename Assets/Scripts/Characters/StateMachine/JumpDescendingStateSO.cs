@@ -19,10 +19,7 @@ namespace PixelAdventure
             _player = stateMachine.GetComponent<PlayerController>();
             _animator = stateMachine.GetComponent<Animator>();
         }
-        public override void OnStateEnter()
-        {
-
-        }
+        public override void OnStateEnter() => base.OnStateEnter();
 
         public override void OnStateExit()
         {
@@ -37,6 +34,11 @@ namespace PixelAdventure
         public override void OnStateFixedUpdate()
         {
 
+        }
+
+        protected override void SetAnimations()
+        {
+            
         }
     }
 }

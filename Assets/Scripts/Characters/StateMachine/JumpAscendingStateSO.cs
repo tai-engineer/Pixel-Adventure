@@ -17,7 +17,6 @@ namespace PixelAdventure
         PlayerController _player;
         Animator _animator;
         StateMachine _stateMachine;
-        Rigidbody2D _rb;
         Protagonist _protagonist;
 
         JumpAscendingStateSO _originSO;
@@ -41,7 +40,6 @@ namespace PixelAdventure
 
             _player = stateMachine.GetComponent<PlayerController>();
             _animator = stateMachine.GetComponent<Animator>();
-            _rb = stateMachine.GetComponent<Rigidbody2D>();
             _protagonist = stateMachine.GetComponent<Protagonist>();
 
             _originSO = (JumpAscendingStateSO)base.originSO;
@@ -49,8 +47,9 @@ namespace PixelAdventure
         }
         public override void OnStateEnter()
         {
+            base.OnStateEnter();
+
             _player.IsAirborne = true;
-            _animator.SetBool(_protagonist.airBorneHash, _player.IsAirborne);
 
             _verticalMovement = _originSO.jumpForce;
 
@@ -59,10 +58,7 @@ namespace PixelAdventure
             _jumpHoldingTime = _originSO.holdingTime;
         }
 
-        public override void OnStateExit()
-        {
-
-        }
+        public override void OnStateExit() { }
 
         public override void OnStateUpdate()
         {
@@ -100,10 +96,11 @@ namespace PixelAdventure
             _verticalMovement += _gravityEffect;
 
             _player.moveVector.y = _verticalMovement;
+        }
 
-            _rb.MovePosition(_currentPosition + _player.moveVector * Time.fixedDeltaTime);
-
-            _player.moveVector = Vector2.zero;
+        protected override void SetAnimations()
+        {
+            _animator.SetBool(_protagonist.airBorneHash, _player.IsAirborne);
         }
     }
 }
