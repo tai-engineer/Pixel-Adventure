@@ -34,6 +34,7 @@ public class StateMachine : MonoBehaviour
     void SetDefaultState(State defaultState)
     {
         _currentState = defaultState;
+        _currentState.StateEnter();
     }
     public void TransitionToState(State newState)
     {
