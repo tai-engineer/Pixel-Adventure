@@ -8,14 +8,13 @@ public class JumpState : State
     CharacterStatsSO _characterStats;
 
     float _initialJumpForce;
-    float _jumpForce;
     public override void StateEnter()
     {
         _characterController = stateMachine.GetComponent<CharacterController>();
         _characterStats = _characterController.Stats;
 
-        _initialJumpForce = _characterStats.JumpForce;
-        _jumpForce = _initialJumpForce;
+        _initialJumpForce = _characterStats.JumpHeight;
+        _characterController.moveVector.y = _initialJumpForce;
     }
 
     public override void StateExit()
@@ -25,9 +24,19 @@ public class JumpState : State
 
     public override void StateUpdate()
     {
-        _jumpForce -= _characterController.Gravity * Time.deltaTime;
-        _jumpForce = Mathf.Clamp(_jumpForce, -_initialJumpForce, _initialJumpForce);
+        _characterController.AirborneVerticalMovement();
+        _characterController.CheckGrounded();
+    }
 
-        _characterController.moveVector.y = _jumpForce;
+    public override void TransitionEvaluate()
+    {
+        if(_characterController.IsGrounded && _characterController.GettingMoveInput)
+        {
+            TransitionToState(stateMachine.RunState);
+        }
+        else if(_characterController.IsGrounded && !_characterController.GettingMoveInput)
+        {
+            TransitionToState(stateMachine.IdleState);
+        }
     }
 }

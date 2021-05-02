@@ -21,7 +21,18 @@ public class RunState : State
 
     public override void StateUpdate()
     {
-        _desiredSpeed = _characterController.moveInput.x * _characterStats.MaxSpeed;
-        _characterController.moveVector.x = Mathf.MoveTowards(_characterController.moveVector.x, _desiredSpeed, _characterStats.MaxAcceleration * Time.deltaTime);
+        _characterController.GroundHorizontalMovement();
+    }
+
+    public override void TransitionEvaluate()
+    {
+        if(!_characterController.IsMoving)
+        {
+            TransitionToState(stateMachine.IdleState);
+        }
+        else if(_characterController.JumpInput)
+        {
+            TransitionToState(stateMachine.JumpState);
+        }
     }
 }

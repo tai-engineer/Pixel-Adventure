@@ -8,18 +8,31 @@ using UnityEngine;
 /// </summary>
 public class StateMachine : MonoBehaviour
 {
-    public IdleState _idleState;
-    public RunState _runState;
-    public JumpState _jumpState;
+    IdleState _idleState;
+    RunState _runState;
+    JumpState _jumpState;
 
     State _currentState;
+
+    public IdleState IdleState { get { return _idleState; } }
+    public RunState RunState { get { return _runState; } }
+    public JumpState JumpState { get { return _jumpState; } }
+    public State CurrentState { get { return _currentState; } }
+
+#if UNITY_EDITOR
+    public StateMachineDebugger _debugger;
+#endif
     void Awake()
     {
         Initialize();
+#if UNITY_EDITOR
+        _debugger = new StateMachineDebugger(this);
+#endif
     }
 
     void Update()
     {
+        _currentState.TransitionEvaluate();
         _currentState.StateUpdate();
     }
     void Initialize()
@@ -40,6 +53,9 @@ public class StateMachine : MonoBehaviour
     {
         _currentState.StateExit();
         _currentState = newState;
+#if UNITY_EDITOR
+        _debugger.TransitionEvaluate(newState.ToString());
+#endif
         _currentState.StateEnter();
     }
 }

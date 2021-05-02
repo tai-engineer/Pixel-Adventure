@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 91734779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 14.55, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1381973383}
@@ -467,7 +467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889849540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.065, y: -3.02, z: 0}
+  m_LocalPosition: {x: -0.94, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -488,6 +488,22 @@ MonoBehaviour:
   _input: {fileID: 11400000, guid: bfa8d4a3068c07b4d824e6472cc3acb1, type: 2}
   _stats: {fileID: 11400000, guid: 63ab52922238f054fb50a7f6baa9b842, type: 2}
   _gravity: 9.84
+  _raycastMask:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 512
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  _groundCastDistance: 0.1
+  _raycastDebug: 1
 --- !u!114 &1889849544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,6 +516,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f14de7b3863ca42b263e3dcfbc2750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _debugger:
+    showDebugLog: 0
+    _currentState: 
 --- !u!61 &1889849545
 BoxCollider2D:
   m_ObjectHideFlags: 0
