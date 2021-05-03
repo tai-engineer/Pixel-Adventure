@@ -2,7 +2,7 @@
 
 public class TestingScript : MonoBehaviour
 {
-    [SerializeField] InputReaderSO _input;
+    [SerializeField] InputReaderSO _input = default;
 
     void OnEnable()
     {

@@ -5,24 +5,24 @@ public class CharacterStatsSO : ScriptableObject
 {
     [Header("Horizontal")]
     [Tooltip("Max velocity that object can reach")]
-    [SerializeField] float _maxSpeed;
+    [SerializeField] float _maxSpeed = default;
 
     [Tooltip("Rate of change of velocity")]
-    [SerializeField] float _maxAcceleration;
+    [SerializeField] float _maxAcceleration = default;
 
     [Header("Vertical")]
     [Tooltip("Initial vertical force")]
-    [SerializeField] float _jumpHeight;
+    [SerializeField] float _jumpHeight = default;
 
     [Tooltip("Initial vertical force")]
-    [SerializeField] float _jumpingAcceleration;
+    [SerializeField] float _jumpingAcceleration = default;
 
     [Tooltip("Negative force which pulls character to the ground")]
     [Range(-50f, -1f)]
-    [SerializeField] float _maxFallingForce;
+    [SerializeField] float _maxFallingForce = default;
 
     [Tooltip("Rate of change of falling force")]
-    [SerializeField] float _fallingAccleration;
+    [SerializeField] float _fallingAccleration = default;
 
     public float MaxSpeed { get { return _maxSpeed; } }
     public float MaxAcceleration { get { return _maxAcceleration; } }

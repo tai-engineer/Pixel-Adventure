@@ -5,7 +5,7 @@ using System.Text;
 [Serializable]
 public class StateMachineDebugger
 {
-    [SerializeField] bool showDebugLog;
+    [SerializeField] bool showDebugLog = false;
     public string _currentState;
     StringBuilder _logBuilder;
     StateMachine _stateMachine;
@@ -23,12 +23,12 @@ public class StateMachineDebugger
 
     public void TransitionEvaluate(string targetState)
     {
-        _currentState = targetState;
         _logBuilder.Clear();
         _logBuilder.AppendLine($"{_stateMachine.gameObject.name} state changed");
         _logBuilder.AppendLine($"{_currentState}   {SHARP_ARROR}   {targetState}");
 
         PrintDebugLog();
+        _currentState = targetState;
     }
     void PrintDebugLog()
     {

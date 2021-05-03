@@ -5,18 +5,22 @@ public class RunState : State
     public RunState(StateMachine stateMachine) : base(stateMachine) { }
 
     CharacterController _characterController;
-    CharacterStatsSO _characterStats;
+    CharacterAnimation _animation;
+    Animator _animator;
 
     float _desiredSpeed;
     public override void StateEnter()
     {
         _characterController = stateMachine.GetComponent<CharacterController>();
-        _characterStats = _characterController.Stats;
+        _animator = stateMachine.GetComponent<Animator>();
+        _animation = stateMachine.GetComponent<CharacterAnimation>();
+
+        _animation.Run.SetValue(_animator, true);
     }
 
     public override void StateExit()
     {
-        
+        _animation.Run.SetValue(_animator, false);
     }
 
     public override void StateUpdate()

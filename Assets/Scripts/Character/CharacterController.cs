@@ -3,30 +3,38 @@ using System;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public class CharacterController : MonoBehaviour
 {
-    [SerializeField] InputReaderSO _input;
-    [SerializeField] CharacterStatsSO _stats;
-    [SerializeField] float _gravity;
-
+    #region Inspector Variables
+    [SerializeField] InputReaderSO _input = default;
+    [SerializeField] CharacterStatsSO _stats = default;
+    [SerializeField] float _gravity = default;
+    #endregion
+    #region Raycast
     [Header("Raycast")]
     [Tooltip("Use for ground and ceiling detection")]
-    [SerializeField] ContactFilter2D _raycastMask;
-    [SerializeField] float _groundCastDistance;
-    [SerializeField] bool _raycastDebug;
+    [SerializeField] ContactFilter2D _raycastMask = default;
+    [SerializeField] float _groundCastDistance = default;
+    [SerializeField] bool _raycastDebug = default;
     RaycastHit2D[] _raycastHits = new RaycastHit2D[3];
+    #endregion
+    #region Movement Variables
+    [NonSerialized] public Vector2 moveInput;
+    [NonSerialized] public Vector2 moveVector;
+    #endregion
 
+    #region Getters/Setters
     public bool JumpInput { get; private set; } = false;
     public bool GettingMoveInput { get { return moveInput.x != 0; } }
     public bool IsMoving { get {return moveVector.x != 0f; } }
     public bool IsGrounded { get; private set; } = false;
-
-    [NonSerialized] public Vector2 moveInput;
-    [NonSerialized] public Vector2 moveVector;
-
-    public CharacterStatsSO Stats { get { return _stats; } }
     public float Gravity { get { return _gravity; } }
+    public CharacterStatsSO Stats { get { return _stats; } }
+    #endregion
 
+    #region Components
     Rigidbody2D _rb;
     BoxCollider2D _box;
+    #endregion
+    #region Unity Event Functions
     void Awake()
     {
         _input.moveEvent            += OnMove;
@@ -41,17 +49,14 @@ public class CharacterController : MonoBehaviour
     {
         Move(moveVector);
     }
-    void Move(Vector2 movement)
-    {
-        moveVector = movement;
-        _rb.MovePosition(_rb.position + moveVector * Time.fixedDeltaTime);
-    }
     void OnDisable()
     {
         _input.moveEvent            -= OnMove;
         _input.jumpStartedEvent     -= OnJumpStarted;
         _input.jumpCanceledEvent    -= OnJumpCanceled;
     }
+    #endregion
+    #region Input Events
     void OnMove(Vector2 input)
     {
         moveInput = input;
@@ -63,6 +68,13 @@ public class CharacterController : MonoBehaviour
     void OnJumpCanceled()
     {
         JumpInput = false;
+    }
+    #endregion
+    #region Movement
+    void Move(Vector2 movement)
+    {
+        moveVector = movement;
+        _rb.MovePosition(_rb.position + moveVector * Time.fixedDeltaTime);
     }
     public void GroundHorizontalMovement()
     {
@@ -80,6 +92,8 @@ public class CharacterController : MonoBehaviour
             moveVector.y = Mathf.MoveTowards(moveVector.y, _stats.MaxFallingForce, Gravity * _stats.FallingAcceleration * Time.deltaTime);
         }
     }
+    #endregion
+    #region Raycast
     public void CheckGrounded()
     {
         IsGrounded = false;
@@ -123,6 +137,7 @@ public class CharacterController : MonoBehaviour
         if (bottomCenter.y <= _raycastHits[1].point.y + _groundCastDistance * 0.5f)
             IsGrounded = true;
     }
+    #endregion
 
     void OnDrawGizmosSelected()
     {
