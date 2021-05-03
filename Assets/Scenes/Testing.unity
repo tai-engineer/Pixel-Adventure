@@ -394,6 +394,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1889849548, guid: b7519eb9fe273704dbc2de922dca43dd, type: 3}
+      propertyPath: _jumpParameter
+      value: 
+      objectReference: {fileID: 11400000, guid: 5302f0a834db1dd4faedbcef500fb60a,
+        type: 2}
+    - target: {fileID: 1889849548, guid: b7519eb9fe273704dbc2de922dca43dd, type: 3}
+      propertyPath: _fallParameter
+      value: 
+      objectReference: {fileID: 11400000, guid: ff1cb047e1cb62e4486283f090335ca6,
+        type: 2}
     - target: {fileID: 3526495063579679625, guid: b7519eb9fe273704dbc2de922dca43dd,
         type: 3}
       propertyPath: m_Name

@@ -24,12 +24,17 @@ public class JumpState : State
     public override void StateExit()
     {
         _animation.Jump.SetValue(_animator, false);
+        _animation.Fall.SetValue(_animator, false);
     }
 
     public override void StateUpdate()
     {
         _characterController.AirborneVerticalMovement();
         _characterController.CheckGrounded();
+        if(_characterController.IsFalling)
+        {
+            _animation.Fall.SetValue(_animator, true);
+        }
     }
 
     public override void TransitionEvaluate()

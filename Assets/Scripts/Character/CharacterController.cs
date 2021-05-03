@@ -26,6 +26,7 @@ public class CharacterController : MonoBehaviour
     public bool GettingMoveInput { get { return moveInput.x != 0; } }
     public bool IsMoving { get {return moveVector.x != 0f; } }
     public bool IsGrounded { get; private set; } = false;
+    public bool IsFalling { get { return moveVector.y < 0; } }
     public float Gravity { get { return _gravity; } }
     public CharacterStatsSO Stats { get { return _stats; } }
     #endregion
