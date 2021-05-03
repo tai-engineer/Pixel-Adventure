@@ -33,6 +33,7 @@ public class CharacterController : MonoBehaviour
     #region Components
     Rigidbody2D _rb;
     BoxCollider2D _box;
+    SpriteRenderer _renderer;
     #endregion
     #region Unity Event Functions
     void Awake()
@@ -43,6 +44,7 @@ public class CharacterController : MonoBehaviour
 
         _rb = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
@@ -76,10 +78,16 @@ public class CharacterController : MonoBehaviour
         moveVector = movement;
         _rb.MovePosition(_rb.position + moveVector * Time.fixedDeltaTime);
     }
+    public void SetJumpHeight(float height)
+    {
+        moveVector.y = height;
+    }
     public void GroundHorizontalMovement()
     {
         float _desiredSpeed = moveInput.x * _stats.MaxSpeed;
         moveVector.x = Mathf.MoveTowards(moveVector.x, _desiredSpeed, _stats.MaxAcceleration * Time.deltaTime);
+
+        Flip();
     }
     public void AirborneVerticalMovement()
     {
@@ -91,6 +99,10 @@ public class CharacterController : MonoBehaviour
         {
             moveVector.y = Mathf.MoveTowards(moveVector.y, _stats.MaxFallingForce, Gravity * _stats.FallingAcceleration * Time.deltaTime);
         }
+    }
+    void Flip()
+    {
+        _renderer.flipX = moveVector.x < 0 ? true : moveVector.x > 0 ? false : _renderer.flipX;
     }
     #endregion
     #region Raycast
