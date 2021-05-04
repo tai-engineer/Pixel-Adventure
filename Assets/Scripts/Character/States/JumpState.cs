@@ -28,7 +28,6 @@ public class JumpState : State
     {
         _animation.Jump.SetValue(_animator, false);
         _animation.Fall.SetValue(_animator, false);
-        _animation.DoubleJump.SetValue(_animator, false);
     }
 
     public override void StateUpdate()
@@ -77,6 +76,6 @@ public class JumpState : State
     void DoubleJump()
     {
         _characterController.SetJumpHeight(_characterStats.DoubleJumpHeight);
-        _animation.DoubleJump.SetValue(_animator, true);
+        _animation.DoubleJump.SetValue(_animator);
     }
 }

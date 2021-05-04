@@ -624,7 +624,7 @@ PrefabInstance:
     - target: {fileID: 1889849548, guid: b7519eb9fe273704dbc2de922dca43dd, type: 3}
       propertyPath: _doubleJumpParameter
       value: 
-      objectReference: {fileID: 11400000, guid: 8e1408cd0aa57054faa1d619975e46b3,
+      objectReference: {fileID: 11400000, guid: 3493599287ab8584e9d1b0ab95edfb17,
         type: 2}
     - target: {fileID: 3526495063579679621, guid: b7519eb9fe273704dbc2de922dca43dd,
         type: 3}
