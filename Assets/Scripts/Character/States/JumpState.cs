@@ -34,7 +34,9 @@ public class JumpState : State
     public override void StateUpdate()
     {
         _characterController.AirborneVerticalMovement();
+        _characterController.AirborneHorizontalMovement();
         _characterController.CheckGrounded();
+        _characterController.CheckCeiling();
 
         if (TryDoubleJump())
         {

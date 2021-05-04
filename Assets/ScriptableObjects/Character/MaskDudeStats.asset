@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 7.73
   _maxAcceleration: 25
+  _airResistance: 1.5
   _jumpHeight: 11.96
   _jumpingAcceleration: 3.03
   _maxFallingForce: -10
-  _fallingAccleration: 2.97
-  _doubleJumpWaitTime: 0.2
+  _fallingAcceleration: 3
+  _doubleJumpHeight: 5

@@ -26,6 +26,8 @@ public class RunState : State
     public override void StateUpdate()
     {
         _characterController.GroundHorizontalMovement();
+        _characterController.GroundVerticalMovement();
+        _characterController.CheckGrounded();
     }
 
     public override void TransitionEvaluate()

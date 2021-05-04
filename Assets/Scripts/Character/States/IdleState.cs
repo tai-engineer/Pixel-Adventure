@@ -16,7 +16,8 @@ public class IdleState : State
 
     public override void StateUpdate()
     {
-        
+        _characterController.GroundVerticalMovement();
+        _characterController.CheckGrounded();
     }
     public override void TransitionEvaluate()
     {

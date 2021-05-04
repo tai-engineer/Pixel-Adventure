@@ -10,6 +10,9 @@ public class CharacterStatsSO : ScriptableObject
     [Tooltip("Rate of change of velocity")]
     [SerializeField] float _maxAcceleration = default;
 
+    [Tooltip("Proportion to simulate air resistance")]
+    [SerializeField] float _airResistance = default;
+
     [Header("Vertical")]
     [Tooltip("Initial vertical force")]
     [SerializeField] float _jumpHeight = default;
@@ -29,6 +32,7 @@ public class CharacterStatsSO : ScriptableObject
 
     public float MaxSpeed { get { return _maxSpeed; } }
     public float MaxAcceleration { get { return _maxAcceleration; } }
+    public float AirResistance { get { return _airResistance; } }
     public float JumpHeight { get { return _jumpHeight; } }
     public float JumpingAcceleration { get { return _jumpingAcceleration; } }
     public float MaxFallingForce { get { return _maxFallingForce; } }
