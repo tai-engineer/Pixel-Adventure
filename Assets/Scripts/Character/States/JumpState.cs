@@ -9,6 +9,7 @@ public class JumpState : State
     CharacterAnimation _animation;
     Animator _animator;
 
+    bool _canDoubleJump;
     public override void StateEnter()
     {
         _characterController = stateMachine.GetComponent<CharacterController>();
@@ -19,21 +20,33 @@ public class JumpState : State
 
         _characterController.SetJumpHeight(_characterStats.JumpHeight);
         _animation.Jump.SetValue(_animator, true);
+
+        _canDoubleJump = false;
     }
 
     public override void StateExit()
     {
         _animation.Jump.SetValue(_animator, false);
         _animation.Fall.SetValue(_animator, false);
+        _animation.DoubleJump.SetValue(_animator, false);
     }
 
     public override void StateUpdate()
     {
         _characterController.AirborneVerticalMovement();
         _characterController.CheckGrounded();
+
+        if (TryDoubleJump())
+        {
+            if (_characterController.JumpInput)
+            {
+                DoubleJump();
+            }
+        }
+
         if(_characterController.IsFalling)
         {
-            _animation.Fall.SetValue(_animator, true);
+            Fall();
         }
     }
 
@@ -43,5 +56,25 @@ public class JumpState : State
         {
             TransitionToState(stateMachine.IdleState);
         }
+    }
+
+    void Fall()
+    {
+        _animation.Fall.SetValue(_animator, true);
+    }
+    bool TryDoubleJump()
+    {
+        if (!_characterController.JumpInput && !_canDoubleJump)
+        {
+           _canDoubleJump = true;
+        }
+
+        return _canDoubleJump;
+    }
+
+    void DoubleJump()
+    {
+        _characterController.SetJumpHeight(_characterStats.DoubleJumpHeight);
+        _animation.DoubleJump.SetValue(_animator, true);
     }
 }

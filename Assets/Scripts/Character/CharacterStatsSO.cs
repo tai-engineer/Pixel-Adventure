@@ -22,12 +22,16 @@ public class CharacterStatsSO : ScriptableObject
     [SerializeField] float _maxFallingForce = default;
 
     [Tooltip("Rate of change of falling force")]
-    [SerializeField] float _fallingAccleration = default;
+    [SerializeField] float _fallingAcceleration = default;
+
+    [Tooltip("Additional force when doing double jump")]
+    [SerializeField] float _doubleJumpHeight = default;
 
     public float MaxSpeed { get { return _maxSpeed; } }
     public float MaxAcceleration { get { return _maxAcceleration; } }
     public float JumpHeight { get { return _jumpHeight; } }
     public float JumpingAcceleration { get { return _jumpingAcceleration; } }
     public float MaxFallingForce { get { return _maxFallingForce; } }
-    public float FallingAcceleration { get { return _fallingAccleration; } }
+    public float FallingAcceleration { get { return _fallingAcceleration; } }
+    public float DoubleJumpHeight { get { return _doubleJumpHeight; } }
 }
