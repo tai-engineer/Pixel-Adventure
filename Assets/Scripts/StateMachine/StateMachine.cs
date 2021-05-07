@@ -11,12 +11,14 @@ public class StateMachine : MonoBehaviour
     IdleState _idleState;
     RunState _runState;
     JumpState _jumpState;
+    WallSlideState _wallSlideState;
 
     State _currentState;
 
     public IdleState IdleState { get { return _idleState; } }
     public RunState RunState { get { return _runState; } }
     public JumpState JumpState { get { return _jumpState; } }
+    public WallSlideState WallSlideState { get { return _wallSlideState; } }
     public State CurrentState { get { return _currentState; } }
 
 #if UNITY_EDITOR
@@ -40,6 +42,7 @@ public class StateMachine : MonoBehaviour
         _idleState = new IdleState(this);
         _runState = new RunState(this);
         _jumpState = new JumpState(this);
+        _wallSlideState = new WallSlideState(this);
 
         SetDefaultState(_idleState);
     }

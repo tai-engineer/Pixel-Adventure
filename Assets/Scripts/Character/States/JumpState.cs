@@ -36,6 +36,7 @@ public class JumpState : State
         _characterController.AirborneHorizontalMovement();
         _characterController.CheckGrounded();
         _characterController.CheckCeiling();
+        _characterController.CheckWallCollided();
 
         if (TryDoubleJump())
         {
@@ -56,6 +57,10 @@ public class JumpState : State
         if(_characterController.IsGrounded)
         {
             TransitionToState(stateMachine.IdleState);
+        }
+        else if(_characterController.IsWallCollided)
+        {
+            TransitionToState(stateMachine.WallSlideState);
         }
     }
 

@@ -29,13 +29,28 @@ public class CharacterStatsSO : ScriptableObject
 
     [Tooltip("Additional force when doing double jump")]
     [SerializeField] float _doubleJumpHeight = default;
+    
+    [Header("Wall Slide")]
+    [Tooltip("Speed when sliding on wall")]
+    [SerializeField] float _wallSlideSpeed = default;
+    [Tooltip("Distance when jumping from wall")]
+    [SerializeField] float _wallJumpDistance = default;
+    [Tooltip("Height when jumping from wall")]
+    [SerializeField] float _wallJumpHeight = default;
 
     public float MaxSpeed { get { return _maxSpeed; } }
     public float MaxAcceleration { get { return _maxAcceleration; } }
     public float AirResistance { get { return _airResistance; } }
+    #region Jump
     public float JumpHeight { get { return _jumpHeight; } }
     public float JumpingAcceleration { get { return _jumpingAcceleration; } }
     public float MaxFallingForce { get { return _maxFallingForce; } }
     public float FallingAcceleration { get { return _fallingAcceleration; } }
     public float DoubleJumpHeight { get { return _doubleJumpHeight; } }
+    #endregion
+    #region Wall Slide
+    public float WallSlideSpeed { get { return _wallSlideSpeed; } }
+    public float WallJumpDistance { get { return _wallJumpDistance; } }
+    public float WallJumpHeight { get { return _wallJumpHeight; } }
+    #endregion
 }
