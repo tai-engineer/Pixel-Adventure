@@ -18,7 +18,11 @@ public class JumpState : State
 
         _characterStats = _characterController.Stats;
 
-        _characterController.SetJumpHeight(_characterStats.JumpHeight);
+        if (_characterController.IsGrounded)
+        {
+            _characterController.SetJumpHeight(_characterStats.JumpHeight); 
+        }
+
         _animation.Jump.SetValue(_animator, true);
 
         _canDoubleJump = false;
