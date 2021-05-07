@@ -127,7 +127,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3526495063579679620
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +141,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.83}
+  m_Offset: {x: 0.05, y: 0.83}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -152,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.4, y: 1.6}
+  m_Size: {x: 1.25, y: 1.6}
   m_EdgeRadius: 0
 --- !u!114 &3526495063579679621
 MonoBehaviour:
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugger:
-    showDebugLog: 0
+    showDebugLog: 1
     _currentState: 
 --- !u!114 &3526495063579679626
 MonoBehaviour:
@@ -200,6 +200,10 @@ MonoBehaviour:
     maxNormalAngle: 0
   _groundCastDistance: 0.1
   _raycastDebug: 1
+  _wallLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  _wallCheckDistance: 0.1
 --- !u!114 &1889849548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,3 +217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _runParameter: {fileID: 11400000, guid: 27f5084b0238c874cae1286a93056597, type: 2}
+  _jumpParameter: {fileID: 11400000, guid: 5302f0a834db1dd4faedbcef500fb60a, type: 2}
+  _fallParameter: {fileID: 11400000, guid: ff1cb047e1cb62e4486283f090335ca6, type: 2}
+  _wallSlideParameter: {fileID: 11400000, guid: 6a48f253779538b4d9a820eb14856706,
+    type: 2}
+  _doubleJumpParameter: {fileID: 11400000, guid: 3493599287ab8584e9d1b0ab95edfb17,
+    type: 2}

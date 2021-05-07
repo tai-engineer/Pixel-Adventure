@@ -719,90 +719,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1889849548, guid: b7519eb9fe273704dbc2de922dca43dd, type: 3}
-      propertyPath: _jumpParameter
-      value: 
-      objectReference: {fileID: 11400000, guid: 5302f0a834db1dd4faedbcef500fb60a,
-        type: 2}
-    - target: {fileID: 1889849548, guid: b7519eb9fe273704dbc2de922dca43dd, type: 3}
-      propertyPath: _fallParameter
-      value: 
-      objectReference: {fileID: 11400000, guid: ff1cb047e1cb62e4486283f090335ca6,
-        type: 2}
-    - target: {fileID: 1889849548, guid: b7519eb9fe273704dbc2de922dca43dd, type: 3}
-      propertyPath: _doubleJumpParameter
-      value: 
-      objectReference: {fileID: 11400000, guid: 3493599287ab8584e9d1b0ab95edfb17,
-        type: 2}
-    - target: {fileID: 1889849548, guid: b7519eb9fe273704dbc2de922dca43dd, type: 3}
-      propertyPath: _wallSlideParameter
-      value: 
-      objectReference: {fileID: 11400000, guid: 6a48f253779538b4d9a820eb14856706,
-        type: 2}
-    - target: {fileID: 3526495063579679620, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679620, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679620, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 0.83
-      objectReference: {fileID: 0}
     - target: {fileID: 3526495063579679621, guid: b7519eb9fe273704dbc2de922dca43dd,
         type: 3}
       propertyPath: _debugger.showDebugLog
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679621, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: _showDebugLog
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679623, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3526495063579679625, guid: b7519eb9fe273704dbc2de922dca43dd,
         type: 3}
       propertyPath: m_Name
       value: MaskDude
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679626, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: _wallLayerMask.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679626, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: _wallCastDistance
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679626, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: _verticalRaycastMask.layerMask.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679626, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: _verticalRaycastMask.useLayerMask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679626, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: _wallLayer.m_Bits
-      value: 1024
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679626, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: _wallCheckDistance
-      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3526495063579679627, guid: b7519eb9fe273704dbc2de922dca43dd,
         type: 3}

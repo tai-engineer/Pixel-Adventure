@@ -24,13 +24,13 @@ public class StateMachine : MonoBehaviour
     public State CurrentState { get { return _currentState; } }
 
 #if UNITY_EDITOR
-    public StateMachineDebugger _debugger;
+    [SerializeField] StateMachineDebugger _debugger = default;
 #endif
     void Awake()
     {
         Initialize();
 #if UNITY_EDITOR
-        _debugger = new StateMachineDebugger(this);
+        _debugger.Awake(this);
 #endif
     }
 

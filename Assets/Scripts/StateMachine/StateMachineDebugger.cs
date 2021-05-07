@@ -11,16 +11,13 @@ public class StateMachineDebugger
     StateMachine _stateMachine;
 
     const string SHARP_ARROR = "\u27A4";
-    /// <summary>
-    /// Must be called after StateMachine.Initialize
-    /// </summary>
-    public StateMachineDebugger(StateMachine stateMachine)
+
+    public void Awake(StateMachine stateMachine)
     {
         _logBuilder = new StringBuilder();
         _stateMachine = stateMachine;
         _currentState = stateMachine.CurrentState.ToString();
     }
-
     public void TransitionEvaluate(string targetState)
     {
         _logBuilder.Clear();
