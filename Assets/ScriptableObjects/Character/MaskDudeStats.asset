@@ -20,3 +20,5 @@ MonoBehaviour:
   _maxFallingForce: -10
   _fallingAcceleration: 3
   _doubleJumpHeight: 5
+  _wallSlideSpeed: 8
+  _wallJumpDistance: 20

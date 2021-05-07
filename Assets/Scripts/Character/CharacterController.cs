@@ -15,6 +15,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] float _groundCastDistance = default;
     [SerializeField] bool _raycastDebug = default;
     RaycastHit2D[] _raycastHits = new RaycastHit2D[3];
+
+    [SerializeField] LayerMask _wallLayer = default;
+    [SerializeField] float _wallCheckDistance = default;
+    RaycastHit2D _wallHit = new RaycastHit2D();
     #endregion
     #region Movement Variables
     [NonSerialized] public Vector2 moveInput;
@@ -28,7 +32,9 @@ public class CharacterController : MonoBehaviour
     public bool IsGrounded { get; private set; } = false;
     public bool IsCeilinged { get; private set; } = false;
     public bool IsFalling { get { return moveVector.y < 0; } }
+    public bool IsWallCollided { get; private set; }
     public float Gravity { get { return _gravity; } }
+    public Vector2 FaceDirection { get; private set; } = Vector2.right;
     public CharacterStatsSO Stats { get { return _stats; } }
     #endregion
 
@@ -79,6 +85,7 @@ public class CharacterController : MonoBehaviour
     {
         moveVector = movement;
         _rb.MovePosition(_rb.position + moveVector * Time.fixedDeltaTime);
+        Flip();
     }
     public void SetJumpHeight(float height)
     {
@@ -88,8 +95,6 @@ public class CharacterController : MonoBehaviour
     {
         float desiredSpeed = moveInput.x * _stats.MaxSpeed;
         moveVector.x = Mathf.MoveTowards(moveVector.x, desiredSpeed, _stats.MaxAcceleration * Time.deltaTime);
-
-        Flip();
     }
     public void GroundVerticalMovement()
     {
@@ -110,16 +115,20 @@ public class CharacterController : MonoBehaviour
     public void AirborneHorizontalMovement()
     {
         float desiredSpeed = moveInput.x * _stats.MaxSpeed;
+
         if(Mathf.Approximately(desiredSpeed, 0))
-            moveVector.x = Mathf.MoveTowards(moveVector.x, desiredSpeed, _stats.MaxAcceleration * Time.deltaTime);
+            moveVector.x = Mathf.MoveTowards(moveVector.x, 0f, _stats.MaxAcceleration * Time.deltaTime);
         else
             moveVector.x = Mathf.MoveTowards(moveVector.x, desiredSpeed, _stats.MaxAcceleration * _stats.AirResistance * Time.deltaTime);
-
-        Flip();
     }
+    public void ResetMoveVector()
+    {
+        moveVector = Vector2.zero;
+    }    
     void Flip()
     {
         _renderer.flipX = moveVector.x < 0 ? true : moveVector.x > 0 ? false : _renderer.flipX;
+        FaceDirection = _renderer.flipX ? Vector2.left : Vector2.right;
     }
     #endregion
     #region Raycast
@@ -208,6 +217,17 @@ public class CharacterController : MonoBehaviour
         if (topCenter.y <= _raycastHits[1].point.y + _groundCastDistance * 0.5f)
             IsCeilinged = true;
     }
+    public void CheckWallCollided()
+    {
+        IsWallCollided = false;
+
+        Vector2 size = _box.size * 0.5f;
+        Vector2 rightCenter = (Vector2)_box.bounds.center + FaceDirection * size.x;
+
+        RaycastHit2D hit = Physics2D.Raycast(rightCenter, FaceDirection, _wallCheckDistance, _wallLayer);
+        _wallHit = hit;
+        IsWallCollided = _wallHit.collider != null;
+    }
     #endregion
 
     void OnDrawGizmosSelected()
@@ -221,6 +241,12 @@ public class CharacterController : MonoBehaviour
                     Gizmos.DrawSphere(_raycastHits[i].point, 0.1f);
                 }
             }
+
+            if (_wallHit.collider != null)
+            {
+                Gizmos.DrawSphere(_wallHit.point, 0.1f); 
+
+    }
         }
     }
 }
