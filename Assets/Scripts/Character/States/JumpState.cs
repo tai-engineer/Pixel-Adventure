@@ -27,14 +27,12 @@ public class JumpState : State
     public override void StateExit()
     {
         _animation.Jump.SetValue(_animator, false);
-        _animation.Fall.SetValue(_animator, false);
     }
 
     public override void StateUpdate()
     {
         _characterController.AirborneVerticalMovement();
         _characterController.AirborneHorizontalMovement();
-        _characterController.CheckGrounded();
         _characterController.CheckCeiling();
 
         if (TryDoubleJump())
@@ -44,24 +42,14 @@ public class JumpState : State
                 DoubleJump();
             }
         }
-
-        if(_characterController.IsFalling)
-        {
-            Fall();
-        }
     }
 
     public override void TransitionEvaluate()
     {
-        if(_characterController.IsGrounded)
+        if(_characterController.IsFalling)
         {
-            TransitionToState(stateMachine.IdleState);
+            TransitionToState(stateMachine.FallState);
         }
-    }
-
-    void Fall()
-    {
-        _animation.Fall.SetValue(_animator, true);
     }
     bool TryDoubleJump()
     {

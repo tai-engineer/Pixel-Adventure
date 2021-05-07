@@ -11,12 +11,14 @@ public class StateMachine : MonoBehaviour
     IdleState _idleState;
     RunState _runState;
     JumpState _jumpState;
+    FallState _fallState;
 
     State _currentState;
 
     public IdleState IdleState { get { return _idleState; } }
     public RunState RunState { get { return _runState; } }
     public JumpState JumpState { get { return _jumpState; } }
+    public FallState FallState { get { return _fallState; } }
     public State CurrentState { get { return _currentState; } }
 
 #if UNITY_EDITOR
@@ -40,6 +42,7 @@ public class StateMachine : MonoBehaviour
         _idleState = new IdleState(this);
         _runState = new RunState(this);
         _jumpState = new JumpState(this);
+        _fallState = new FallState(this);
 
         SetDefaultState(_idleState);
     }
