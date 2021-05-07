@@ -19,6 +19,7 @@ MonoBehaviour:
   _jumpingAcceleration: 3.03
   _maxFallingForce: -10
   _fallingAcceleration: 3
-  _doubleJumpHeight: 5
+  _doubleJumpHeight: 7
   _wallSlideSpeed: 8
-  _wallJumpDistance: 20
+  _wallJumpDistance: 10
+  _wallJumpHeight: 15

@@ -30,6 +30,7 @@ public class FallState : State
         _characterController.AirborneVerticalMovement();
         _characterController.AirborneHorizontalMovement();
         _characterController.CheckGrounded();
+        _characterController.CheckWallCollided();
     }
 
     public override void TransitionEvaluate()
@@ -37,6 +38,10 @@ public class FallState : State
         if(_characterController.IsGrounded)
         {
             TransitionToState(stateMachine.IdleState);
+        }
+        else if (_characterController.IsWallCollided)
+        {
+            TransitionToState(stateMachine.WallSlideState);
         }
     }
 }

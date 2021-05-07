@@ -91,6 +91,10 @@ public class CharacterController : MonoBehaviour
     {
         moveVector.y = height;
     }
+    public void SetHorizontalDistance(float distance)
+    {
+        moveVector.x = distance;
+    }
     public void GroundHorizontalMovement()
     {
         float desiredSpeed = moveInput.x * _stats.MaxSpeed;

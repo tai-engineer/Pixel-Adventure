@@ -55,10 +55,10 @@ public class JumpState : State
         {
             TransitionToState(stateMachine.FallState);
         }
-        else if(_characterController.IsWallCollided)
-        {
-            TransitionToState(stateMachine.WallSlideState);
-        }
+        //else if(_characterController.IsWallCollided)
+        //{
+        //    TransitionToState(stateMachine.WallSlideState);
+        //}
     }
     bool TryDoubleJump()
     {

@@ -9,9 +9,7 @@ public class WallSlideState : State
     CharacterAnimation _animation;
     Animator _animator;
 
-    bool _isSliding;
-    bool _isWallJumping;
-    Vector2 _direction = Vector2.zero;
+    Vector2 _wallJumpdirection = Vector2.zero;
     public override void StateEnter()
     {
         _characterController = stateMachine.GetComponent<CharacterController>();
@@ -23,9 +21,7 @@ public class WallSlideState : State
         _characterController.ResetMoveVector();
         _animation.WallSlide.SetValue(_animator, true);
 
-        _isSliding = true;
-        _isWallJumping = false;
-        _direction.x = -_characterController.FaceDirection.x;
+        _wallJumpdirection.x = -_characterController.FaceDirection.x;
     }
 
     public override void StateExit() 
@@ -35,18 +31,7 @@ public class WallSlideState : State
 
     public override void StateUpdate()
     {
-        if(_characterController.JumpInput && _isSliding)
-        {
-            _characterController.SetJumpHeight(_characterStats.WallJumpHeight);
-            _characterController.moveVector.x = _characterStats.WallJumpDistance * _direction.x;
-
-            _isSliding = false;
-            _isWallJumping = true;
-            _animation.WallSlide.SetValue(_animator, false);
-        }
-
         WallSlide();
-        WallJump();
 
         _characterController.CheckCeiling();
         _characterController.CheckWallCollided();
@@ -58,31 +43,28 @@ public class WallSlideState : State
         {
             TransitionToState(stateMachine.IdleState);
         }
-        //else if(!_characterController.IsWallCollided)
-        //{
-        //    TransitionToState(stateMachine.JumpState);
-        //}
+        else if (_characterController.JumpInput)
+        {
+            WallJump();
+            TransitionToState(stateMachine.JumpState);
+        }
+        else if(!_characterController.IsWallCollided)
+        {
+            TransitionToState(stateMachine.FallState);
+        }
     }
 
     void WallSlide()
     {
-        if (_isSliding)
-        {
-            // Horizontal
-            _characterController.GroundHorizontalMovement();
-            // Vertical
-            _characterController.moveVector.y = Mathf.MoveTowards(_characterController.moveVector.y, _characterStats.MaxFallingForce, _characterStats.WallSlideSpeed * Time.deltaTime); 
-        }
+        // Horizontal
+        _characterController.GroundHorizontalMovement();
+        // Vertical
+        _characterController.moveVector.y = Mathf.MoveTowards(_characterController.moveVector.y, _characterStats.MaxFallingForce, _characterStats.WallSlideSpeed * Time.deltaTime);
     }
 
     void WallJump()
     {
-        if (_isWallJumping)
-        {
-            // Horizontal
-            _characterController.moveVector.x = Mathf.MoveTowards(_characterController.moveVector.x, 0f, _characterStats.MaxAcceleration * Time.deltaTime);
-            // Vertical
-            _characterController.AirborneVerticalMovement(); 
-        }
+        _characterController.SetJumpHeight(_characterStats.WallJumpHeight);
+        _characterController.SetHorizontalDistance(_characterStats.WallJumpDistance * _wallJumpdirection.x);
     }
 }
