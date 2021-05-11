@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
 public class CharacterController : MonoBehaviour, IDamageable, IDamager
 {
@@ -268,6 +269,47 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager
     void OnTriggerEnter2D(Collider2D other)
     {
         Damage(other.gameObject, _stats.Damage);
+    }
+    #endregion
+    #region Effects
+    public void StartFading()
+    {
+        StartCoroutine(FadeInAndOut());
+    }
+    IEnumerator FadeInAndOut()
+    {
+        float counter = 0f;
+
+        float duration = _stats.FadeDuration;
+        float speed = _stats.FadeSpeed;
+        int fadeCount = _stats.FadeCount;
+        
+        Color spirteColor = _renderer.material.color;
+
+        while (fadeCount > 0)
+        {
+            while (counter < duration)
+            {
+                counter += Time.deltaTime * speed;
+                spirteColor.a = Mathf.Lerp(1f, 0f, counter / duration);
+
+                _renderer.material.color = spirteColor;
+                yield return null;
+            }
+
+            counter = 0f;
+            while (counter < duration)
+            {
+                counter += Time.deltaTime * speed;
+                spirteColor.a = Mathf.Lerp(0f, 1f, counter / duration);
+
+                _renderer.material.color = spirteColor;
+                yield return null;
+            }
+
+            fadeCount--;
+        }
+
     }
     #endregion
     void OnDrawGizmosSelected()

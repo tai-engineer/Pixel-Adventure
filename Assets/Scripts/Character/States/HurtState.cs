@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-
-
 /// <summary>
 /// This state has special behaviour
 /// It can only be entered via OnHit event handler
@@ -20,6 +18,8 @@ public class HurtState : State
         GetReferences();
 
         Init();
+
+        _characterController.StartFading();
     }
 
     public override void StateExit()

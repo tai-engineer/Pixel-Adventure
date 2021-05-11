@@ -80,4 +80,18 @@ public class CharacterStatsSO : ScriptableObject
     public float FallBackDistance { get { return _fallBackDistance; } }
     public float FallBackSpeed { get { return _fallBackSpeed; } }
     #endregion
+    #region FadeIn/Out
+    [Space]
+    [Header("Fade In/Out")]
+    [Tooltip("Speed of fading effect")]
+    [SerializeField] float _fadeSpeed = default;
+    [Tooltip("Number of fading effect")]
+    [SerializeField] int _fadeCount = default;
+    [Tooltip("How long fading effect will take (FadeIn = FadeOut = duration")]
+    [SerializeField] float _fadeDuration = default;
+
+    public float FadeSpeed { get { return _fadeSpeed; } }
+    public int FadeCount { get { return _fadeCount; } }
+    public float FadeDuration { get { return _fadeDuration; } }
+    #endregion
 }
