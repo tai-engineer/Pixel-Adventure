@@ -50,16 +50,18 @@ public class CharacterStatsSO : ScriptableObject
     #region Health
     [Space]
     [Header("Health")]
-    [SerializeField] float _health = 100f;
+    [SerializeField] float _startingHealth;
+    float _currentHealth;
 
-    public float Health { get { return _health;} }
+    public float Health { get { return _currentHealth; } }
     public void IncreaseHealth(float value)
     {
-        _health += value;
+        _currentHealth += value;
     }
     public void DecreaseHealth(float value)
     {
-        _health -= value;
+        if(_currentHealth > 0)
+            _currentHealth -= value;
     }
     #endregion
     #region Attack
@@ -94,4 +96,13 @@ public class CharacterStatsSO : ScriptableObject
     public int FadeCount { get { return _fadeCount; } }
     public float FadeDuration { get { return _fadeDuration; } }
     #endregion
+
+    void OnEnable()
+    {
+        Reset();
+    }
+    void Reset()
+    {
+        _currentHealth = _startingHealth;
+    }
 }

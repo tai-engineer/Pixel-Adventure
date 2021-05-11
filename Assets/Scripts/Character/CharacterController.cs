@@ -47,11 +47,15 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager
     public bool IsWallCollided { get; private set; }
     public float Gravity { get { return _gravity; } }
     public Vector2 FaceDirection { get; private set; } = Vector2.right;
-    
     /// <summary>
     /// Return normalized move vector
     /// </summary>
     public Vector2 Direction { get { return moveVector.normalized; } }
+
+    /// <summary>
+    /// Cannot be hurt when invincible
+    /// </summary>
+    public bool IsInvincible { get; private set; }
     public CharacterStatsSO Stats { get { return _stats; } }
     #endregion
 
@@ -253,6 +257,9 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager
     #region Interface Implementations
     public void TakeDamage(float damage)
     {
+        if (IsInvincible)
+            return;
+
         _stats.DecreaseHealth(damage);
         _hitEvent.RaiseEvent(damage);
     }
@@ -278,6 +285,8 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager
     }
     IEnumerator FadeInAndOut()
     {
+        IsInvincible = true;
+
         float counter = 0f;
 
         float duration = _stats.FadeDuration;
@@ -288,6 +297,7 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager
 
         while (fadeCount > 0)
         {
+            // Fade in
             while (counter < duration)
             {
                 counter += Time.deltaTime * speed;
@@ -297,7 +307,9 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager
                 yield return null;
             }
 
+
             counter = 0f;
+            // Fade out
             while (counter < duration)
             {
                 counter += Time.deltaTime * speed;
@@ -309,6 +321,8 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager
 
             fadeCount--;
         }
+
+        IsInvincible = false;
 
     }
     #endregion

@@ -2,18 +2,16 @@
 using System;
 public class IdleState : State
 {
-    public IdleState(StateMachine stateMachine) : base(stateMachine) { }
+    public IdleState(StateMachine stateMachine) : base(stateMachine){ }
 
     CharacterController _characterController;
     public override void StateEnter()
     {
         _characterController = stateMachine.GetComponent<CharacterController>();
 
-        ResetMoveVector();
+        _characterController.ResetMoveVector();
     }
-
     public override void StateExit() { }
-
     public override void StateUpdate()
     {
         _characterController.GroundVerticalMovement();
@@ -29,10 +27,5 @@ public class IdleState : State
         {
             TransitionToState(stateMachine.JumpState);
         }
-    }
-
-    void ResetMoveVector()
-    {
-        _characterController.moveVector = Vector2.zero;
     }
 }
