@@ -166,8 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f14de7b3863ca42b263e3dcfbc2750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitEvent: {fileID: 11400000, guid: b4ffb6b75b20c70479f271af03476e47, type: 2}
   _debugger:
-    showDebugLog: 1
+    showDebugLog: 0
     _currentState: 
 --- !u!114 &3526495063579679626
 MonoBehaviour:
@@ -181,9 +182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351e1f9af44f33f46a11bb57f33de679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitEvent: {fileID: 11400000, guid: b4ffb6b75b20c70479f271af03476e47, type: 2}
   _input: {fileID: 11400000, guid: bfa8d4a3068c07b4d824e6472cc3acb1, type: 2}
   _stats: {fileID: 11400000, guid: 63ab52922238f054fb50a7f6baa9b842, type: 2}
-  _gravity: 9.84
   _raycastMask:
     useTriggers: 0
     useLayerMask: 1
@@ -204,6 +205,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   _wallCheckDistance: 0.1
+  _gravity: 9.84
 --- !u!114 &1889849548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,3 +225,4 @@ MonoBehaviour:
     type: 2}
   _doubleJumpParameter: {fileID: 11400000, guid: 3493599287ab8584e9d1b0ab95edfb17,
     type: 2}
+  _HurtParameter: {fileID: 11400000, guid: 79a5f2f42a535b040af7ea58875fe307, type: 2}

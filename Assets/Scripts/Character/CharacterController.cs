@@ -1,14 +1,22 @@
 ﻿using UnityEngine;
 using System;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
-public class CharacterController : MonoBehaviour
+public class CharacterController : MonoBehaviour, IDamageable, IDamager
 {
-    #region Inspector Variables
+    #region References
+    [Header("Event Raised")]
+    [SerializeField] FloatEventChannelSO _hitEvent = default;
+
+    [Space]
+    [Header("Inputs")]
     [SerializeField] InputReaderSO _input = default;
+
+    [Space]
+    [Header("Stats")]
     [SerializeField] CharacterStatsSO _stats = default;
-    [SerializeField] float _gravity = default;
     #endregion
     #region Raycast
+    [Space]
     [Header("Raycast")]
     [Tooltip("Use for ground and ceiling detection")]
     [SerializeField] ContactFilter2D _raycastMask = default;
@@ -21,6 +29,9 @@ public class CharacterController : MonoBehaviour
     RaycastHit2D _wallHit = new RaycastHit2D();
     #endregion
     #region Movement Variables
+    [Space]
+    [Header("Physics")]
+    [SerializeField] float _gravity = default;
     [NonSerialized] public Vector2 moveInput;
     [NonSerialized] public Vector2 moveVector;
     #endregion
@@ -35,6 +46,11 @@ public class CharacterController : MonoBehaviour
     public bool IsWallCollided { get; private set; }
     public float Gravity { get { return _gravity; } }
     public Vector2 FaceDirection { get; private set; } = Vector2.right;
+    
+    /// <summary>
+    /// Return normalized move vector
+    /// </summary>
+    public Vector2 Direction { get { return moveVector.normalized; } }
     public CharacterStatsSO Stats { get { return _stats; } }
     #endregion
 
@@ -233,7 +249,27 @@ public class CharacterController : MonoBehaviour
         IsWallCollided = _wallHit.collider != null;
     }
     #endregion
-
+    #region Interface Implementations
+    public void TakeDamage(float damage)
+    {
+        _stats.DecreaseHealth(damage);
+        _hitEvent.RaiseEvent(damage);
+    }
+    public void Damage(GameObject obj, float damage)
+    {
+        IDamageable damageable = obj.GetComponent<IDamageable>();
+        if(damageable != null)
+        {
+            damageable.TakeDamage(damage);
+        }
+    }
+    #endregion
+    #region Trigger
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Damage(other.gameObject, _stats.Damage);
+    }
+    #endregion
     void OnDrawGizmosSelected()
     {
         if(_raycastDebug)
@@ -253,4 +289,5 @@ public class CharacterController : MonoBehaviour
     }
         }
     }
+
 }

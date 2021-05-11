@@ -23,3 +23,7 @@ MonoBehaviour:
   _wallSlideSpeed: 8
   _wallJumpDistance: 10
   _wallJumpHeight: 15
+  _health: -930
+  _damage: 5
+  _fallBackDistance: 2
+  _fallBackSpeed: 5

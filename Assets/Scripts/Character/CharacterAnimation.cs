@@ -10,10 +10,12 @@ public class CharacterAnimation : MonoBehaviour
     [SerializeField] AnimationBoolSO _fallParameter = default;
     [SerializeField] AnimationBoolSO _wallSlideParameter = default;
     [SerializeField] AnimationTriggerSO _doubleJumpParameter = default;
+    [SerializeField] AnimationTriggerSO _HurtParameter = default;
     #endregion
     public AnimationBoolSO Run { get { return _runParameter; } }
     public AnimationBoolSO Jump { get { return _jumpParameter; } }
     public AnimationBoolSO Fall { get { return _fallParameter; } }
     public AnimationBoolSO WallSlide { get { return _wallSlideParameter; } }
     public AnimationTriggerSO DoubleJump { get { return _doubleJumpParameter; } }
+    public AnimationTriggerSO Hurt { get { return _HurtParameter; } }
 }
