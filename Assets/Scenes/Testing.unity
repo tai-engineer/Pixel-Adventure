@@ -229,87 +229,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &279802860
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 279802861}
-  - component: {fileID: 279802862}
-  m_Layer: 0
-  m_Name: BulletPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &279802861
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279802860}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 463006399}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &279802862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279802860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6bcea466c3140846bd141783a11f1f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 842099439677237407, guid: 6aeb75bcc51d3b94d8364a80d48fbb5c, type: 3}
-  initialPoolCount: 10
---- !u!1 &349163626
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 349163627}
-  m_Layer: 0
-  m_Name: ShootingOrigin
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &349163627
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349163626}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 463006399}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &463006399 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8062963442292797858, guid: 8d276d2e6713f2d4f98607d076328f46,
-    type: 3}
-  m_PrefabInstance: {fileID: 1101487915753547773}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,27 +394,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1272795283, guid: 8d276d2e6713f2d4f98607d076328f46, type: 3}
-      propertyPath: _bulletPool
-      value: 
-      objectReference: {fileID: 279802862}
-    - target: {fileID: 1272795283, guid: 8d276d2e6713f2d4f98607d076328f46, type: 3}
-      propertyPath: _shootingOrigin
-      value: 
-      objectReference: {fileID: 349163627}
-    - target: {fileID: 1272795283, guid: 8d276d2e6713f2d4f98607d076328f46, type: 3}
-      propertyPath: _projectileSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1272795283, guid: 8d276d2e6713f2d4f98607d076328f46, type: 3}
-      propertyPath: _projectilePrefab
-      value: 
-      objectReference: {fileID: 3784201613828570854, guid: 6aeb75bcc51d3b94d8364a80d48fbb5c,
-        type: 3}
-    - target: {fileID: 1272795283, guid: 8d276d2e6713f2d4f98607d076328f46, type: 3}
-      propertyPath: _rangeDamage
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 6080267370573825029, guid: 8d276d2e6713f2d4f98607d076328f46,
         type: 3}
       propertyPath: m_Name
@@ -504,12 +402,12 @@ PrefabInstance:
     - target: {fileID: 8062963442292797858, guid: 8d276d2e6713f2d4f98607d076328f46,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.84
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8062963442292797858, guid: 8d276d2e6713f2d4f98607d076328f46,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.36
+      value: 5.07
       objectReference: {fileID: 0}
     - target: {fileID: 8062963442292797858, guid: 8d276d2e6713f2d4f98607d076328f46,
         type: 3}
