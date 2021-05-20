@@ -4,6 +4,8 @@ public class Brick : MonoBehaviour
 {
     const float BOUNCE_DISTANCE = 1f;
     [SerializeField] float _bounceSpeed = 7f;
+    [SerializeField] CoinPool _pool = default;
+    [SerializeField] bool _canSpawn = false;
 
     bool _canBounce = false;
     int _direction = 1; // 1: upward, -1: downward
@@ -24,6 +26,11 @@ public class Brick : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         _canBounce = true;
+
+        if(_canSpawn)
+        {
+            CoinObject coin = _pool.Pop(transform.position);
+        }
     }
     void Bounce()
     {

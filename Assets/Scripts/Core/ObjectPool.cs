@@ -7,6 +7,7 @@ public class ObjectPool<TPool, TObject> : MonoBehaviour
     public GameObject prefab;
     public int initialPoolCount = 10;
     List<TObject> pool = new List<TObject>();
+    [SerializeField] bool _extendable = true;
 
     void Start()
     {
@@ -39,13 +40,18 @@ public class ObjectPool<TPool, TObject> : MonoBehaviour
             }
         }
 
-        // All of pool objects are in used.
-        // Create one more object to use
-        TObject poolObj = CreateNewPoolObject();
-        poolObj.inPool = false;
-        poolObj.WakeUp();
-        pool.Add(poolObj);
-        return poolObj;
+        if (_extendable)
+        {
+            // All of pool objects are in used.
+            // Create one more object to use
+            TObject poolObj = CreateNewPoolObject();
+            poolObj.inPool = false;
+            poolObj.WakeUp();
+            pool.Add(poolObj);
+            return poolObj; 
+        }
+
+        return default(TObject);
     }
 
     public TObject Pop(Vector2 postion)
@@ -60,13 +66,18 @@ public class ObjectPool<TPool, TObject> : MonoBehaviour
             }
         }
 
-        // All of pool objects are in used.
-        // Create one more object to use
-        TObject poolObj = CreateNewPoolObject();
-        poolObj.inPool = false;
-        poolObj.WakeUp(postion);
-        pool.Add(poolObj);
-        return poolObj;
+        if (_extendable)
+        {
+            // All of pool objects are in used.
+            // Create one more object to use
+            TObject poolObj = CreateNewPoolObject();
+            poolObj.inPool = false;
+            poolObj.WakeUp(postion);
+            pool.Add(poolObj);
+            return poolObj; 
+        }
+
+        return default(TObject);
     }
 
     public void Push(TObject poolObject)
