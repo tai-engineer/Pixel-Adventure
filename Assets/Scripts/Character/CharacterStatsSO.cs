@@ -50,7 +50,7 @@ public class CharacterStatsSO : ScriptableObject
     #region Health
     [Space]
     [Header("Health")]
-    [SerializeField] float _startingHealth;
+    [SerializeField] float _startingHealth = default;
     float _currentHealth;
 
     public float Health { get { return _currentHealth; } }

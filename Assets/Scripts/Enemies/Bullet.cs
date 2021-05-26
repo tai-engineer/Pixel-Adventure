@@ -7,7 +7,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] GameObject _piecePrefab = default;
-    [SerializeField] AudioClip _bulletImpact = default;
     [SerializeField] float _timeBeforeAutoDestruct = default;
     [SerializeField] bool _destroyWhenOutOfView = default;
 

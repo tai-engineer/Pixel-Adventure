@@ -18,11 +18,9 @@ public class EnemyController : MonoBehaviour
 
     [Space]
     [Header("Range Attack")]
-    [SerializeField] Transform _projectilePrefab = default;
     [SerializeField] float _projectileSpeed = default;
     [SerializeField] Transform _shootingOrigin = default;
     [SerializeField] BulletPool _bulletPool = default;
-    [SerializeField] float _rangeDamage = default;
     [SerializeField] float _timeBetweenShots = default;
     float _timer;
     bool _firstShot;

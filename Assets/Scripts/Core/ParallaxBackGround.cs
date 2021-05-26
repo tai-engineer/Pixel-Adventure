@@ -7,9 +7,9 @@ public class ParallaxBackGround : MonoBehaviour
     Transform _cameraTransform;
     Vector3 _lastCameraPostion;
 
-    [SerializeField] Vector2 _paralaxEffectMultiplier;
-    [SerializeField] bool _infiniteX;
-    [SerializeField] bool _infiniteY;
+    [SerializeField] Vector2 _paralaxEffectMultiplier = default;
+    [SerializeField] bool _infiniteX = default;
+    [SerializeField] bool _infiniteY = default;
     Vector2 _textureUnitSize;
     void Start()
     {
