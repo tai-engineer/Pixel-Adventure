@@ -25,11 +25,18 @@ public class Brick : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        _canBounce = true;
+        ContactPoint2D[] contacts = new ContactPoint2D[1];
+        collision.GetContacts(contacts);
 
-        if(_canSpawn)
+        // Got hit from bottom
+        if (contacts[0].point.y < transform.position.y)
         {
-            CoinObject coin = _pool.Pop(transform.position);
+            _canBounce = true;
+
+            if (_canSpawn)
+            {
+                CoinObject coin = _pool.Pop(transform.position);
+            }
         }
     }
     void Bounce()

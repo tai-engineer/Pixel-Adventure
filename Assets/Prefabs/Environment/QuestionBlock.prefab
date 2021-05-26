@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6952456782384797277}
   - component: {fileID: -3526357618619698373}
   - component: {fileID: 8522196679938349268}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: QuestionBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,3 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bounceSpeed: 7
+  _pool: {fileID: 0}
+  _canSpawn: 0
