@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
-public class CharacterController : MonoBehaviour, IDamageable, IDamager
+public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPickUp
 {
     #region References
     [Header("Event Raised")]
@@ -270,6 +270,16 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager
         {
             damageable.TakeDamage(damage);
         }
+    }
+
+    public void GainScore(int score)
+    {
+        _stats.AddScore(score);
+    }
+
+    public void GainHealth(float health)
+    {
+        _stats.IncreaseHealth(health);
     }
     #endregion
     #region Trigger

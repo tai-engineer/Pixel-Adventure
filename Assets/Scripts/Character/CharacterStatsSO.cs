@@ -96,7 +96,13 @@ public class CharacterStatsSO : ScriptableObject
     public int FadeCount { get { return _fadeCount; } }
     public float FadeDuration { get { return _fadeDuration; } }
     #endregion
-
+    #region Score
+    public int Score { get; private set; }
+    public void AddScore(int score)
+    {
+        Score += score;
+    }
+    #endregion
     void OnEnable()
     {
         Reset();
@@ -104,5 +110,6 @@ public class CharacterStatsSO : ScriptableObject
     void Reset()
     {
         _currentHealth = _startingHealth;
+        Score = 0;
     }
 }
