@@ -12,6 +12,8 @@ public class Goomba : MonoBehaviour
     EnemyController _controller;
     AudioSource _audioSource;
     Animator _animator;
+
+    public bool IsDead { get; private set; }
     void Awake()
     {
         _controller = GetComponent<EnemyController>();
@@ -28,7 +30,8 @@ public class Goomba : MonoBehaviour
     // Call by TakeDamage event
     public void OnTakeDamage()
     {
-        _animator.SetBool("deadParameter", true);
+        IsDead = true;
+        _animator.SetBool(deadParameter, true);
         _audioSource.clip = DeadSound;
         _audioSource.Play();
     }
