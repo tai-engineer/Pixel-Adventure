@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinPool : ObjectPool<CoinPool, CoinObject>
+public class CoinPool : ObjectPool<CoinPool, CoinObject, Vector2>
 {
-    
 }
 
-public class CoinObject : PoolObject<CoinPool, CoinObject>
+public class CoinObject : PoolObject<CoinPool, CoinObject, Vector2>
 {
     public Transform transform;
     public FlashingCoin coin;

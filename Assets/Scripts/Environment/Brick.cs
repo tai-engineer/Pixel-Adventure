@@ -35,7 +35,7 @@ public class Brick : MonoBehaviour
 
             if (_canSpawn)
             {
-                CoinObject coin = _pool.Pop(transform.position);
+                _pool.Pop(transform.position);
             }
         }
     }

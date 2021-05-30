@@ -1,11 +1,8 @@
 ﻿using UnityEngine;
 
-public class BulletPool : ObjectPool<BulletPool, BulletObject>
-{
-    
-}
+public class BulletPool : ObjectPool<BulletPool, BulletObject, Vector2> { }
 
-public class BulletObject : PoolObject<BulletPool, BulletObject>
+public class BulletObject : PoolObject<BulletPool, BulletObject, Vector2>
 {
     public Transform transform;
     public Rigidbody2D rb2D;

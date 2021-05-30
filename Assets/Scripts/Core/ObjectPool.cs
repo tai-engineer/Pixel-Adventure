@@ -1,13 +1,52 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections.Generic;
-public class ObjectPool<TPool, TObject> : MonoBehaviour
+
+public abstract class ObjectPool<TPool, TObject, TInfo> : ObjectPool<TPool, TObject>
+    where TPool : ObjectPool<TPool, TObject, TInfo>
+    where TObject : PoolObject<TPool, TObject, TInfo>, new()
+{
+    void Start()
+    {
+        for (int i = 0; i < initialPoolCount; i++)
+        {
+            TObject obj = CreateNewPoolObject();
+            pool.Add(obj);
+        }
+    }
+    public TObject Pop(TInfo info)
+    {
+        for (int i = 0; i < pool.Count; i++)
+        {
+            if (pool[i].inPool)
+            {
+                pool[i].inPool = false;
+                pool[i].WakeUp(info);
+                return pool[i];
+            }
+        }
+
+        if (_extendable)
+        {
+            // All of pool objects are in used.
+            // Create one more object to use
+            TObject poolObj = CreateNewPoolObject();
+            poolObj.inPool = false;
+            poolObj.WakeUp(info);
+            pool.Add(poolObj);
+            return poolObj;
+        }
+        return null;
+    }
+}
+public abstract class ObjectPool<TPool, TObject> : MonoBehaviour
     where TPool: ObjectPool<TPool, TObject>
     where TObject : PoolObject<TPool, TObject>, new()
 {
     public GameObject prefab;
     public int initialPoolCount = 10;
-    List<TObject> pool = new List<TObject>();
-    [SerializeField] bool _extendable = true;
+    public List<TObject> pool = new List<TObject>();
+    public bool _extendable = true;
 
     void Start()
     {
@@ -17,7 +56,7 @@ public class ObjectPool<TPool, TObject> : MonoBehaviour
             pool.Add(obj);
         }
     }
-    TObject CreateNewPoolObject()
+    protected TObject CreateNewPoolObject()
     {
         TObject poolObject = new TObject();
         poolObject.instance = Instantiate(prefab, transform);
@@ -54,41 +93,26 @@ public class ObjectPool<TPool, TObject> : MonoBehaviour
         return default(TObject);
     }
 
-    public TObject Pop(Vector2 postion)
-    {
-        for (int i = 0; i < pool.Count; i++)
-        {
-            if (pool[i].inPool)
-            {
-                pool[i].inPool = false;
-                pool[i].WakeUp(postion);
-                return pool[i];
-            }
-        }
-
-        if (_extendable)
-        {
-            // All of pool objects are in used.
-            // Create one more object to use
-            TObject poolObj = CreateNewPoolObject();
-            poolObj.inPool = false;
-            poolObj.WakeUp(postion);
-            pool.Add(poolObj);
-            return poolObj; 
-        }
-
-        return default(TObject);
-    }
-
-    public void Push(TObject poolObject)
+    public virtual void Push(TObject poolObject)
     {
         poolObject.inPool = true;
         poolObject.Sleep();
-        pool.Add(poolObject);
     }
 }
 
-public class PoolObject<TPool, TObject>
+[Serializable]
+public abstract class PoolObject<TPool, TObject, TInfo> : PoolObject<TPool, TObject>
+    where TPool : ObjectPool<TPool, TObject, TInfo>
+    where TObject : PoolObject<TPool, TObject, TInfo>, new()
+{
+    public virtual void WakeUp(TInfo info) { }
+    public override string ToString()
+    {
+        return $"{instance.name}: inPool({inPool})";
+    }
+}
+[Serializable]
+public abstract class PoolObject<TPool, TObject>
     where TPool : ObjectPool<TPool, TObject>
     where TObject : PoolObject<TPool, TObject>, new()
 {
@@ -102,12 +126,12 @@ public class PoolObject<TPool, TObject>
         SetReferences();
     }
     public virtual void WakeUp() { }
-    public virtual void WakeUp(Vector2 postion) { }
-    public void Sleep()
+    
+    public virtual void Sleep()
     {
         instance.SetActive(false);
     }
-    public void ReturnToPool()
+    public virtual void ReturnToPool()
     {
         TObject thisObject = this as TObject;
         objectPool.Push(thisObject);
