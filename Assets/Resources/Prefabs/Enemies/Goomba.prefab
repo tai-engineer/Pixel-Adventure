@@ -166,11 +166,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteFaceLeft: 0
-  _moveSpeed: 3
+  _moveSpeed: 7
   _ObstacleLayer:
     serializedVersion: 2
     m_Bits: 512
-  _damage: 0
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  _gravity: 10
   _scanForTarget: 0
   _characterLayer:
     serializedVersion: 2
@@ -183,6 +186,8 @@ MonoBehaviour:
   _shootingOrigin: {fileID: 0}
   _bulletPool: {fileID: 0}
   _timeBetweenShots: 0
+  _meleeDamage: 5
+  _timeBetweenMeleeAttack: 2
   onTakeDamage:
     m_PersistentCalls:
       m_Calls:

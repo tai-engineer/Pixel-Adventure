@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PA.Events;
 #if UNITY_EDITOR
-using UnityEditor; 
+using UnityEditor;
 #endif
 
 [RequireComponent(typeof(SpriteRenderer), typeof(Rigidbody2D))]
@@ -15,7 +15,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] bool _spriteFaceLeft = false;
     [SerializeField] float _moveSpeed = default;
     [SerializeField] LayerMask _ObstacleLayer = default;
-    [SerializeField] float _damage = default;
+    [SerializeField] LayerMask _groundLayer = default;
+    [SerializeField] float _gravity = 3f;
+    public bool IsGrounded { get; private set; }
+    Vector2 _moveVector;
+    Vector2 _faceDirection;
 
     [Space]
     [Header("Scanning Settings")]
@@ -36,14 +40,20 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] Transform _shootingOrigin = default;
     [SerializeField] BulletPool _bulletPool = default;
     [SerializeField] float _timeBetweenShots = default;
-    float _timer;
+    float _rangeAttackTimer = 0f;
     bool _firstShot;
 
-    Vector2 _moveVector;
-    Vector2 _faceDirection;
+    [Space]
+    [Header("Melee Attack")]
+    [SerializeField] float _meleeDamage = default;
+    [SerializeField] float _timeBetweenMeleeAttack = default;
+    float _meleeAttackTimer = 0f;
+
+    #region Comonents
     SpriteRenderer _renderer;
     Rigidbody2D _rb;
     BoxCollider2D _box2D;
+    #endregion
 
     const float RAYCAST_DISTANCE = 0.1f;
     void Awake()
@@ -100,6 +110,31 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         return hit2D.collider;
     }
+    public void GroundCheck()
+    {
+        Vector2[] raycastStart = new Vector2[3];
+        Vector2 bottomCenter = (Vector2)_box2D.bounds.center + Vector2.down * new Vector2(0f, _box2D.size.y * 0.5f);
+
+        raycastStart[0] = bottomCenter;
+        raycastStart[1] = bottomCenter + Vector2.left * new Vector2(_box2D.size.x * 0.5f, 0f);
+        raycastStart[2] = bottomCenter + Vector2.right * new Vector2(_box2D.size.x * 0.5f, 0f);
+
+        RaycastHit2D[] hit2D = new RaycastHit2D[3];
+
+        Vector2 normal = Vector2.zero;
+        for(int i = 0; i < raycastStart.Length; i++)
+        {
+            hit2D[i] = Physics2D.Raycast(raycastStart[i], Vector2.down, RAYCAST_DISTANCE, _groundLayer);
+            if (hit2D[i].collider != null)
+                normal += hit2D[i].normal;
+        }
+        normal.Normalize();
+
+        if (Mathf.Approximately(normal.x, 0) && Mathf.Approximately(normal.y, 0))
+            IsGrounded = false;
+        else if(hit2D[0].collider != null)
+            IsGrounded = true;
+    }
     #endregion
     #region Movement
     public void Move(Vector2 movement)
@@ -141,16 +176,20 @@ public class EnemyController : MonoBehaviour, IDamageable
             FlipMoveDirection();
         }
 
-        _moveVector.x = _moveSpeed * GetMoveDirection().x;
+        _moveVector.x = IsGrounded ? _moveSpeed * GetMoveDirection().x : 0f;
+        _moveVector.y = Mathf.Max(_moveVector.y - _gravity * Time.deltaTime, -_gravity);
 
         Move(_moveVector);
     }
     #endregion
-    #region Attack
+    #region Take Damage
     public FloatEvent onTakeDamage = new FloatEvent();
-    /// <summary>
-    /// Shoot first target detected in range
-    /// </summary>
+    public void TakeDamage(float damage)
+    {
+        onTakeDamage.Invoke(damage);
+    }
+    #endregion
+    #region Range Attack
     public void ShootTarget()
     {
         if (!_hasProjectile)
@@ -159,15 +198,11 @@ public class EnemyController : MonoBehaviour, IDamageable
         if (_visibleTarget == null)
             return;
 
-        if (_timer > _timeBetweenShots || !_firstShot)
+        if (Time.time - _rangeAttackTimer >= _timeBetweenShots || !_firstShot)
         {
             SpawnProjectiles(_shootingOrigin.position, _visibleTarget.position);
             _firstShot = true;
-            _timer = 0f;
-        }
-        else
-        {
-            _timer += Time.deltaTime;
+            _rangeAttackTimer = Time.time;
         }
     }
 
@@ -177,9 +212,13 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         bulletObj.rb2D.velocity = (target - origin).normalized * _projectileSpeed;
     }
-
+    #endregion
     /// <summary>
-    /// Attack when being touch in left/right side
+    /// Shoot first target detected in range
+    /// </summary>
+    #region Melee Attack
+    /// <summary>
+    /// Attack when being touch on left/right side
     /// </summary>
     public void TouchAttack()
     {
@@ -188,19 +227,18 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             GameObject obj = collider.gameObject;
             // Hit damageable object
-            if (obj.TryGetComponent<IDamageable>(out IDamageable damageable))
+            if (obj.TryGetComponent<IDamageable>(out IDamageable damageable) && (Time.time - _meleeAttackTimer >= _timeBetweenMeleeAttack || _meleeAttackTimer == 0f))
             {
-                damageable.TakeDamage(_damage);
+                damageable.TakeDamage(_meleeDamage);
+                _meleeAttackTimer = Time.time;
+                Debug.Log("Attack");
+                return;
             }
         }
     }
-    public void TakeDamage(float damage)
-    {
-        onTakeDamage.Invoke(damage);
-    }
     #endregion
-    #region Gizmoz
 
+    #region Gizmoz
 #if UNITY_EDITOR
     void OnDrawGizmosSelected()
     {

@@ -25,6 +25,7 @@ public class Goomba : MonoBehaviour
     {
         _controller.Patrol();
         _controller.TouchAttack();
+        _controller.GroundCheck();
     }
 
     // Call by TakeDamage event
