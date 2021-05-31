@@ -22,6 +22,7 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     [Tooltip("Use for ground and ceiling detection")]
     [SerializeField] ContactFilter2D _raycastMask = default;
     [SerializeField] float _groundCastDistance = default;
+    [SerializeField] float _CeilingCastDistance = default;
     [SerializeField] bool _raycastDebug = default;
     RaycastHit2D[] _raycastHits = new RaycastHit2D[3];
 
@@ -168,9 +169,10 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
 
         Vector2 size = _box.size * 0.5f;
         bottomCenter = (Vector2)_box.bounds.center + Vector2.down * size.y;
-        raycasts[0] = bottomCenter + Vector2.left * size.x;
+        float offset = 0.8f;
+        raycasts[0] = bottomCenter + Vector2.left * size.x * offset;
         raycasts[1] = bottomCenter;
-        raycasts[2] = bottomCenter + Vector2.right * size.x;
+        raycasts[2] = bottomCenter + Vector2.right * size.x * offset;
 
         int count;
         for (int i = 0; i < raycasts.Length; i++)
@@ -210,19 +212,20 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
 
         Vector2 size = _box.size * 0.5f;
         Vector2 topCenter = (Vector2)_box.bounds.center + Vector2.up * size.y;
-        raycasts[0] = topCenter + Vector2.left * size.x;
+        float offset = 0.8f;
+        raycasts[0] = topCenter + Vector2.left * size.x * offset;
         raycasts[1] = topCenter;
-        raycasts[2] = topCenter + Vector2.right * size.x;
+        raycasts[2] = topCenter + Vector2.right * size.x * offset;
 
         int count;
         for (int i = 0; i < raycasts.Length; i++)
         {
-            count = Physics2D.Raycast(raycasts[i], Vector2.up, _raycastMask, hitResults, _groundCastDistance);
+            count = Physics2D.Raycast(raycasts[i], Vector2.up, _raycastMask, hitResults, _CeilingCastDistance);
             // Get first contact collider
             _raycastHits[i] = count > 0 ? hitResults[0] : new RaycastHit2D();
             if (_raycastDebug)
             {
-                Debug.DrawLine(raycasts[i], raycasts[i] + Vector2.up * _groundCastDistance, Color.red);
+                Debug.DrawLine(raycasts[i], raycasts[i] + Vector2.up * _CeilingCastDistance, Color.red);
             }
         }
 
