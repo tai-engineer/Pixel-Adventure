@@ -9954,6 +9954,11 @@ PrefabInstance:
       propertyPath: _pool
       value: 
       objectReference: {fileID: 2129598228}
+    - target: {fileID: 8522196679938349268, guid: cf1997568d74dd7469b6a25307200d89,
+        type: 3}
+      propertyPath: _coinPool
+      value: 
+      objectReference: {fileID: 2129598228}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf1997568d74dd7469b6a25307200d89, type: 3}
 --- !u!4 &1509995535 stripped
@@ -11206,6 +11211,11 @@ PrefabInstance:
     - target: {fileID: 8522196679938349268, guid: cf1997568d74dd7469b6a25307200d89,
         type: 3}
       propertyPath: _pool
+      value: 
+      objectReference: {fileID: 2129598228}
+    - target: {fileID: 8522196679938349268, guid: cf1997568d74dd7469b6a25307200d89,
+        type: 3}
+      propertyPath: _coinPool
       value: 
       objectReference: {fileID: 2129598228}
     m_RemovedComponents: []

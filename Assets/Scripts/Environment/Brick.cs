@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(SpriteRenderer), typeof(AudioSource))]
 public class Brick : MonoBehaviour
 {
     const float BOUNCE_DISTANCE = 1f;
@@ -20,9 +20,11 @@ public class Brick : MonoBehaviour
     int _coinRemain;
 
     SpriteRenderer _renderer;
+    AudioSource _audio;
     void Awake()
     {
         _renderer = GetComponent<SpriteRenderer>();
+        _audio = GetComponent<AudioSource>();
 
         _origin = transform.position;
         _targetPositionY = _origin.y + BOUNCE_DISTANCE;
@@ -46,6 +48,7 @@ public class Brick : MonoBehaviour
         {
             _canBounce = true;
             SpawnPrefab();
+            _audio.Play();
         }
     }
     void Bounce()
