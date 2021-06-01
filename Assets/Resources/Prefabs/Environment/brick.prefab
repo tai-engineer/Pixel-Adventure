@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db555fa4c4e954945b575bc50f69857e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canSpawn: 0
   _bounceSpeed: 7
   _pool: {fileID: 0}
-  _canSpawn: 0
+  _noOfCoin: 0
+  _disabledSprite: {fileID: 21300084, guid: 82bc45c4496284f4c823d1b837f65ec4, type: 3}
