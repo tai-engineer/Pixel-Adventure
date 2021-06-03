@@ -10,7 +10,7 @@ public class InputReaderSO : ScriptableObject, InputControl.IGameplayActions
     public event UnityAction<Vector2> moveEvent = delegate { };
     public event UnityAction jumpStartedEvent = delegate { };
     public event UnityAction jumpCanceledEvent = delegate { };
-
+    public event UnityAction shootEvent = delegate { };
     void OnEnable()
     {
         if(_inputControl == null)
@@ -49,5 +49,11 @@ public class InputReaderSO : ScriptableObject, InputControl.IGameplayActions
     public void OnMove(InputAction.CallbackContext context)
     {
         moveEvent.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            shootEvent.Invoke();
     }
 }

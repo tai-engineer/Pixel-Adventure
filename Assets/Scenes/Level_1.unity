@@ -6713,7 +6713,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6f53165f892b87e4e980af5ec213207f, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -8590,21 +8590,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3526495063579679620, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679624, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1722619559
-      objectReference: {fileID: 0}
-    - target: {fileID: 3526495063579679624, guid: b7519eb9fe273704dbc2de922dca43dd,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3526495063579679625, guid: b7519eb9fe273704dbc2de922dca43dd,
         type: 3}
       propertyPath: m_Name
@@ -8613,7 +8598,7 @@ PrefabInstance:
     - target: {fileID: 3526495063579679627, guid: b7519eb9fe273704dbc2de922dca43dd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.3745894
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 3526495063579679627, guid: b7519eb9fe273704dbc2de922dca43dd,
         type: 3}

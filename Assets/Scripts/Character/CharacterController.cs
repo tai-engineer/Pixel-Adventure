@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(BoxCollider2D))]
@@ -37,7 +37,6 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     [NonSerialized] public Vector2 moveInput;
     [NonSerialized] public Vector2 moveVector;
     #endregion
-
     #region Getters/Setters
     public bool JumpInput { get; private set; } = false;
     public bool GettingMoveInput { get { return moveInput.x != 0; } }
@@ -59,18 +58,34 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     public bool IsInvincible { get; private set; }
     public CharacterStatsSO Stats { get { return _stats; } }
     #endregion
-
+    #region Projectile
+    [Space]
+    [Header("Shooting")]
+    [SerializeField] PlayerProjectilePool _projectilePool = default;
+    [SerializeField] Transform _shootingLeft = default;
+    [SerializeField] Transform _shootingRight = default;
+    [Tooltip("Distance to target")]
+    [SerializeField] float _shootDistance = 3f;
+    [Tooltip("Y position when touching the ground")]
+    [SerializeField] float _groundOffset = -3f;
+    [SerializeField] float _timeBetweenShots = 1f;
+    float _projectileTimer = 0f;
+    #endregion
     #region Components
     Rigidbody2D _rb;
     BoxCollider2D _box;
     SpriteRenderer _renderer;
     #endregion
     #region Unity Event Functions
-    void Awake()
+    void OnEnable()
     {
         _input.moveEvent            += OnMove;
         _input.jumpStartedEvent     += OnJumpStarted;
         _input.jumpCanceledEvent    += OnJumpCanceled;
+        _input.shootEvent += OnShoot;
+    }
+    void Awake()
+    {
 
         _rb = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
@@ -86,6 +101,7 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
         _input.moveEvent            -= OnMove;
         _input.jumpStartedEvent     -= OnJumpStarted;
         _input.jumpCanceledEvent    -= OnJumpCanceled;
+        _input.shootEvent -= OnShoot;
     }
     #endregion
     #region Input Events
@@ -100,6 +116,20 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     void OnJumpCanceled()
     {
         JumpInput = false;
+    }
+    void OnShoot()
+    {
+        if (Time.time - _projectileTimer >= _timeBetweenShots)
+        {
+            Vector2 shootingPosition = _renderer.flipX ? _shootingLeft.position : _shootingRight.position;
+            Vector2 shootingDirection = _renderer.flipX ? Vector2.left : Vector2.right;
+            Vector2 targetPosition = new Vector2(_rb.position.x + _shootDistance * shootingDirection.x, _groundOffset);
+
+            PlayerProjectileObject projectileObject = _projectilePool.Pop(shootingPosition);
+            projectileObject.projectile.SetDirection(shootingDirection);
+            projectileObject.projectile.Launch(targetPosition);
+            _projectileTimer = Time.time;
+        }
     }
     #endregion
     #region Movement
@@ -257,7 +287,7 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
         IsWallCollided = _wallHit.collider != null;
     }
     #endregion
-    #region Interface Implementations
+    #region Damage
     public void TakeDamage(float damage)
     {
         if (IsInvincible)
@@ -274,7 +304,8 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
             damageable.TakeDamage(damage);
         }
     }
-
+    #endregion
+    #region Item Pickup
     public void GainScore(int score)
     {
         _stats.AddScore(score);

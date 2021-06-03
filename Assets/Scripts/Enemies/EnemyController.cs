@@ -231,7 +231,6 @@ public class EnemyController : MonoBehaviour, IDamageable
             {
                 damageable.TakeDamage(_meleeDamage);
                 _meleeAttackTimer = Time.time;
-                Debug.Log("Attack");
                 return;
             }
         }

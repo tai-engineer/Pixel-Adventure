@@ -125,7 +125,10 @@ public abstract class PoolObject<TPool, TObject>
         objectPool = pool;
         SetReferences();
     }
-    public virtual void WakeUp() { }
+    public virtual void WakeUp()
+    {
+        instance.SetActive(true);
+    }
     
     public virtual void Sleep()
     {

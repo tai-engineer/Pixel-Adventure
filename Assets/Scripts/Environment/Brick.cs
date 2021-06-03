@@ -9,6 +9,7 @@ public class Brick : MonoBehaviour
     [SerializeField] CoinPool _coinPool = default;
     [SerializeField] int _noOfCoin = default;
     [SerializeField] Sprite _disabledSprite = default;
+    [SerializeField] LayerMask _playerLayer = default;
 
     bool _canBounce = false;
     bool _disable = false;
@@ -38,6 +39,9 @@ public class Brick : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (_disable)
+            return;
+
+        if (!LayerMaskHelper.Contains(_playerLayer, collision.gameObject))
             return;
 
         ContactPoint2D[] contacts = new ContactPoint2D[1];
