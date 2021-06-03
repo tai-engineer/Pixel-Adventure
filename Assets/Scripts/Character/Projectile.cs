@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
+[RequireComponent(typeof(AudioSource))]
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float _launchAngle = default;
@@ -13,6 +14,7 @@ public class Projectile : MonoBehaviour
 
     Rigidbody2D _rb;
     Animator _animator;
+    AudioSource _audioSource;
 
     Vector2 _targetPosition;
     float _distanceToTarget;
@@ -35,6 +37,7 @@ public class Projectile : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -64,6 +67,21 @@ public class Projectile : MonoBehaviour
             SelfDestroy();
         }
 
+        _rb.velocity = CalculateVelocity(target);
+
+
+        _launchCount--;
+        _targetPosition = target;
+        _distanceToTarget = Vector2.Distance(_rb.position, target);
+    }
+
+    
+    /// <summary>
+    /// Returns global velocity to target
+    /// </summary>
+    /// <returns></returns>
+    Vector2 CalculateVelocity(Vector2 target)
+    {
         // V * V = G * R * R / (2 * ( H - R * tanAlpha))
         // Ref: https://vilbeyli.github.io/Projectile-Motion-Tutorial-for-Arrows-and-Missiles-in-Unity3D/
         float R = Vector2.Distance(_rb.position, target);
@@ -76,11 +94,7 @@ public class Projectile : MonoBehaviour
 
         Vector2 localVelocity = new Vector2(Vx * _direction.x, Vy);
         Vector2 globalVelocity = transform.TransformDirection(localVelocity);
-        _rb.velocity = globalVelocity;
-
-        _launchCount--;
-        _targetPosition = target;
-        _distanceToTarget = R;
+        return globalVelocity;
     }
     void Relaunch(Vector2 target)
     {
@@ -93,5 +107,9 @@ public class Projectile : MonoBehaviour
     public void SetDirection(Vector2 direction)
     {
         _direction = direction;
+    }
+    public void PlaySoundFX()
+    {
+        _audioSource.Play();
     }
 }

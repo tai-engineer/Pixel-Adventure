@@ -21,6 +21,7 @@ public class PlayerProjectileObject : PoolObject<PlayerProjectilePool, PlayerPro
     {
         instance.transform.position = postion;
         instance.SetActive(true);
+        projectile.PlaySoundFX();
     }
 
     public override void ReturnToPool()
