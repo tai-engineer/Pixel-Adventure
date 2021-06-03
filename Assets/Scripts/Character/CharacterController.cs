@@ -57,6 +57,8 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     /// </summary>
     public bool IsInvincible { get; private set; }
     public CharacterStatsSO Stats { get { return _stats; } }
+    public bool CanShoot { get; private set; }
+    public Material CurrentMaterial { get; private set; }
     #endregion
     #region Projectile
     [Space]
@@ -64,6 +66,8 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     [SerializeField] PlayerProjectilePool _projectilePool = default;
     [SerializeField] Transform _shootingLeft = default;
     [SerializeField] Transform _shootingRight = default;
+    [SerializeField] Material _starLikeMaterial = default;
+
     [Tooltip("Distance to target")]
     [SerializeField] float _shootDistance = 3f;
     [Tooltip("Y position when touching the ground")]
@@ -86,10 +90,11 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     }
     void Awake()
     {
-
         _rb = GetComponent<Rigidbody2D>();
         _box = GetComponent<BoxCollider2D>();
         _renderer = GetComponent<SpriteRenderer>();
+
+        CurrentMaterial = _renderer.material;
     }
 
     void FixedUpdate()
@@ -119,17 +124,7 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     }
     void OnShoot()
     {
-        if (Time.time - _projectileTimer >= _timeBetweenShots)
-        {
-            Vector2 shootingPosition = _renderer.flipX ? _shootingLeft.position : _shootingRight.position;
-            Vector2 shootingDirection = _renderer.flipX ? Vector2.left : Vector2.right;
-            Vector2 targetPosition = new Vector2(_rb.position.x + _shootDistance * shootingDirection.x, _groundOffset);
-
-            PlayerProjectileObject projectileObject = _projectilePool.Pop(shootingPosition);
-            projectileObject.projectile.SetDirection(shootingDirection);
-            projectileObject.projectile.Launch(targetPosition);
-            _projectileTimer = Time.time;
-        }
+        Shoot();
     }
     #endregion
     #region Movement
@@ -310,10 +305,15 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
     {
         _stats.AddScore(score);
     }
-
     public void GainHealth(float health)
     {
         _stats.IncreaseHealth(health);
+    }
+    public void GainSkill()
+    {
+        CanShoot = true;
+        SetMaterial(_starLikeMaterial);
+        CurrentMaterial = _starLikeMaterial;
     }
     #endregion
     #region Trigger
@@ -368,6 +368,29 @@ public class CharacterController : MonoBehaviour, IDamageable, IDamager, IItemPi
 
         IsInvincible = false;
 
+    }
+    public void SetMaterial(Material newMaterial)
+    {
+        _renderer.material = newMaterial;
+    }
+    #endregion
+    #region Range Attack
+    void Shoot()
+    {
+        if (!CanShoot)
+            return;
+
+        if (Time.time - _projectileTimer >= _timeBetweenShots)
+        {
+            Vector2 shootingPosition = _renderer.flipX ? _shootingLeft.position : _shootingRight.position;
+            Vector2 shootingDirection = _renderer.flipX ? Vector2.left : Vector2.right;
+            Vector2 targetPosition = new Vector2(_rb.position.x + _shootDistance * shootingDirection.x, _groundOffset);
+
+            PlayerProjectileObject projectileObject = _projectilePool.Pop(shootingPosition);
+            projectileObject.projectile.SetDirection(shootingDirection);
+            projectileObject.projectile.Launch(targetPosition);
+            _projectileTimer = Time.time;
+        }
     }
     #endregion
     void OnDrawGizmosSelected()

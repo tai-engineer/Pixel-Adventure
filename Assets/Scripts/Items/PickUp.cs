@@ -17,9 +17,10 @@ public class PickUp : MonoBehaviour
         // Destroy when audio ended
         GetComponent<SpriteRenderer>().enabled = false;
         
-        if (TryGetComponent<AudioSource>(out AudioSource audioSource))
+        if (gameObject.TryGetComponent<AudioSource>(out AudioSource audioSource))
         {
             float delay = audioSource.clip.length;
+            audioSource.Play();
             Destroy(gameObject, delay);
         }
         else

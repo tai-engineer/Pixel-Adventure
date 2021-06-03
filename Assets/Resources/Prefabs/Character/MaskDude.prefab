@@ -233,6 +233,7 @@ MonoBehaviour:
   _projectilePool: {fileID: 3438773701262572170}
   _shootingLeft: {fileID: 4960135120924107364}
   _shootingRight: {fileID: 5601083706843105564}
+  _starLikeMaterial: {fileID: 2100000, guid: bcb9429b40ad73841a50e5fcf4d4d7b8, type: 2}
   _shootDistance: 3
   _groundOffset: -2.8
   _timeBetweenShots: 0.5
